@@ -1,128 +1,169 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tapasyaa - Chatbot Support</title>
+  <style>
+    body {
+      background: #d0f0f7; /* pastel blue-green */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #034d4d;
+    }
+    header, footer {
+      background: #a2d5c6; /* pastel green */
+      color: #033f3f;
+      text-align: center;
+      padding: 1rem 0;
+      font-weight: 700;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 1.5rem;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    #chat {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      border: 1px solid #a2d5c6;
+      border-radius: 8px;
+      background: #e0f7f4;
+      margin-bottom: 1rem;
+      max-height: 400px;
+    }
+    .message {
+      max-width: 75%;
+      margin-bottom: 0.8rem;
+      padding: 0.7rem 1rem;
+      border-radius: 20px;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+    .user {
+      background: #a2d5c6;
+      color: #033f3f;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    .bot {
+      background: #028080;
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    input[type="text"] {
+      flex-grow: 1;
+      border-radius: 20px;
+      border: 1px solid #a2d5c6;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #028080;
+      box-shadow: 0 0 5px #028080;
+    }
+    button {
+      background: #028080;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #016868;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Tapasyaa Chatbot&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;family=Open+Sans&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Open Sans', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1, h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>::-webkit-scrollbar {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>::-webkit-scrollbar-thumb {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #A8DADC;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-[#F1FAEE] text-[#1D3557] flex flex-col min-h-screen"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Navbar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav class="bg-[#A8DADC] p-4 shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 class="text-2xl font-bold"&gt;🧘‍♀️ Tapasyaa&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul class="flex space-x-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="index.html" class="hover:underline"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="book-session.html" class="hover:underline"&gt;Book a Session&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="crisis-management.html" class="hover:underline"&gt;Crisis&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="chatbot.html" class="hover:underline font-semibold"&gt;Chatbot&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="about.html" class="hover:underline"&gt;About&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Chat Area --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="flex-1 px-4 py-8 max-w-3xl mx-auto w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 class="text-3xl font-bold text-center mb-6"&gt;💬 Talk to Tapasyaa&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="chatbox" class="bg-white p-6 rounded-xl shadow-md h-[450px] overflow-y-scroll mb-4 space-y-4 border border-[#A8DADC]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="text-center text-sm text-gray-500"&gt;Tapasyaa is here to gently guide and support you 🌱&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;form id="chat-form" class="flex space-x-2 mt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="text" id="user-input" placeholder="How are you feeling today?" class="flex-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A8DADC]" required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button type="submit" class="bg-[#457B9D] hover:bg-[#1D3557] text-white px-4 py-2 rounded-md transition"&gt;Send&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Footer --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="bg-[#A8DADC] text-center p-4 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2025 Tapasyaa. All rights reserved.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Chatbot Logic --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const chatbox = document.getElementById('chatbox');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const form = document.getElementById('chat-form');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const input = document.getElementById('user-input');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const replies = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "sad", response: "I'm really sorry you're feeling this way. Want to share more about it?" },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "anxious", response: "Take a deep breath with me... Inhale slowly... and exhale. You're safe here." },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "depressed", response: "It’s okay to feel this way sometimes. You’re not alone. I’m right here with you 💙" },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "lonely", response: "You’re not alone, I promise. Let’s talk through it, if you’re open to it." },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "help", response: "I’m here to help. Would you like to connect with a therapist or try a calming activity?" },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "panic", response: "Let’s try the 5-4-3-2-1 grounding exercise. Start by naming 5 things you can see around you." },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "angry", response: "Anger is valid. Want to talk about what made you feel this way?" },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "tired", response: "You’ve been carrying a lot. Rest is okay. You deserve to pause and breathe." },</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "okay", response: "I'm glad to hear that. I’m still here to support you anytime you need it." },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>form.addEventListener('submit', function (e) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const userMessage = input.value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!userMessage) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>addMessage('You', userMessage, 'right');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>input.value = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const botMessage = getBotReply(userMessage);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>addMessage('Tapasyaa', botMessage, 'left');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}, 600);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function addMessage(sender, text, side) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const messageDiv = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>messageDiv.className = `flex ${side === 'right' ? 'justify-end' : 'justify-start'}`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>messageDiv.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-${side === 'right' ? '[#A8DADC]' : '[#E0FBFC]'} max-w-[75%] p-3 rounded-lg text-[#1D3557]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="font-semibold"&gt;${sender}:&lt;/span&gt; ${text}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>chatbox.appendChild(messageDiv);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>chatbox.scrollTop = chatbox.scrollHeight;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function getBotReply(input) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const lowerInput = input.toLowerCase();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>for (let pair of replies) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (lowerInput.includes(pair.keyword)) return pair.response;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return "Thank you for sharing. I'm listening — tell me more about how you're feeling 💜";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<header>
+  <h1>Tapasyaa Bot</h1>
+</header>
+
+<main>
+  <div id="chat" aria-live="polite" aria-label="Chat messages"></div>
+  <form id="chat-form" aria-label="Chat input form">
+    <input type="text" id="user-input" placeholder="How are you feeling today?" autocomplete="off" required />
+    <button type="submit">Send</button>
+  </form>
+</main>
+
+<footer>
+  &copy; 2025 Tapasyaa. All rights reserved.
+</footer>
+
+<script>
+  const chat = document.getElementById('chat');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('user-input');
+
+  // Gentle bot responses based on keywords
+  function getBotResponse(text) {
+    text = text.toLowerCase();
+    if (text.includes('sad') || text.includes('depressed')) {
+      return "I'm sorry you're feeling sad. Remember, it's okay to reach out and talk to someone. You're not alone.";
+    }
+    if (text.includes('anxious') || text.includes('anxiety')) {
+      return "Anxiety can be tough. Try taking deep breaths and grounding yourself in the present moment.";
+    }
+    if (text.includes('help') || text.includes('support')) {
+      return "I'm here to support you. If things feel overwhelming, consider booking a session with a therapist.";
+    }
+    if (text.includes('suicidal') || text.includes('suicide')) {
+      return "If you're having suicidal thoughts, please reach out immediately to a trusted person or call a helpline.";
+    }
+    if (text.trim() === '') {
+      return "Please type something so I can assist you better.";
+    }
+    return "Thank you for sharing. How else can I assist you today?";
+  }
+
+  function appendMessage(text, className) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', className);
+    msg.textContent = text;
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    appendMessage(userText, 'user');
+    input.value = '';
+
+    setTimeout(() => {
+      const botReply = getBotResponse(userText);
+      appendMessage(botReply, 'bot');
+    }, 700);
+  });
+</script>
+
 </body>
 </html>
