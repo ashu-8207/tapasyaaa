@@ -7,21 +7,24 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 <body class="bg-blue-50 min-h-screen flex flex-col font-sans text-gray-800">
+  <!-- Header -->
   <header class="bg-blue-200 p-6 shadow-md">
     <h1 class="text-4xl font-bold text-center text-blue-900">Tapasyaa</h1>
     <p class="text-center text-blue-700 mt-1">Safe space for mental health support</p>
   </header>
 
+  <!-- Navigation -->
   <nav class="bg-blue-100 shadow-inner">
-    <ul class="flex justify-center space-x-8 p-4 text-blue-800 font-semibold">
+    <ul class="flex justify-center flex-wrap space-x-6 md:space-x-8 p-4 text-blue-800 font-semibold text-lg">
       <li><a href="index.html" class="hover:underline">Home</a></li>
       <li><a href="book-session.html" class="hover:underline">Book Session</a></li>
       <li><a href="crisis-management.html" class="hover:underline">Crisis Support</a></li>
       <li><a href="chatbot.html" class="hover:underline">Chatbot</a></li>
-      <li><a href="about.html">About Us</a></li>
+      <li><a href="about.html" class="hover:underline">About Us</a></li>
     </ul>
   </nav>
 
+  <!-- Main Content -->
   <main class="flex-grow max-w-3xl mx-auto px-6 py-10">
     <section class="text-center mb-10">
       <h2 class="text-3xl font-semibold mb-4">Welcome to Tapasyaa</h2>
@@ -32,7 +35,7 @@
 
     <section>
       <h3 class="text-2xl font-semibold mb-3">Our Services</h3>
-      <ul class="list-disc list-inside space-y-2">
+      <ul class="list-disc list-inside space-y-2 text-left mx-auto max-w-md">
         <li>Confidential therapy sessions</li>
         <li>24/7 crisis management support</li>
         <li>AI-powered empathetic chatbot</li>
@@ -46,6 +49,7 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="bg-blue-200 text-center p-6 text-blue-900">
     <p>&copy; 2025 Tapasyaa. All rights reserved.</p>
   </footer>
