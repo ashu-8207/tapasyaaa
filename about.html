@@ -2,63 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us - Tapasyaa</title>
   <style>
     body {
-      background: #d0f0f7;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 2rem;
+      font-family: Arial, sans-serif;
+      background-color: #d0f0f7;
       color: #034d4d;
-      min-height: 100vh;
+      margin: 40px auto;
+      max-width: 700px;
+      padding: 20px;
+      text-align: center;
     }
     h1 {
-      text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 20px;
     }
     p {
-      max-width: 600px;
-      margin: 0 auto 1rem auto;
       font-size: 1.1rem;
       line-height: 1.5;
+      margin-bottom: 15px;
     }
-    .team-container {
-      margin: 3rem auto 0 auto;
-      max-width: 600px;
-      background: #e0f7f4;
-      padding: 1.5rem 2rem;
+    .team-box {
+      margin-top: 50px;
+      background-color: #e0f7f4;
       border-radius: 12px;
-      color: #016868;
+      padding: 25px;
       font-style: italic;
       font-size: 1.3rem;
+      color: #016868;
       min-height: 50px;
       position: relative;
       overflow: hidden;
-      text-align: center;
     }
     .team-member {
+      opacity: 0;
       position: absolute;
       width: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
       top: 50%;
       transform: translateY(-50%);
+      transition: opacity 1s ease-in-out;
     }
     .team-member.active {
       opacity: 1;
       position: relative;
-      top: 0;
       transform: none;
     }
   </style>
 </head>
 <body>
 
-<h1>About Us</h1>
-<p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
-<p>Our mission is to provide compassionate care and resources for those navigating emotional challenges, anxiety, depression, and more. We believe that seeking help is a brave and vital step towards healing.</p>
-<p>Through this platform, you can connect with trained therapists, access crisis support, and chat with our empathetic Tapasyaa Bot designed to offer comfort and guidance.</p>
-<p>We are committed to creating a calming, welcoming environment where every visitor feels heard and valued.</p>
-<p>Thank you for trusting us to be part of your journey.</p>
+  <h1>About Us</h1>
+  <p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
+  <p>Our mission is to provide compassionate care and resources for those navigating emotional challenges, anxiety, depression, and more. We believe that seeking help is a brave and vital step towards healing.</p>
+  <p>Through this platform, you can connect with trained therapists, access crisis support, and chat with our empathetic Tapasyaa Bot designed to offer comfort and guidance.</p>
+  <p>We are committed to creating a calming, welcoming environment where every visitor feels heard and valued.</p>
+  <p>Thank you for trusting us to be part of your journey.</p>
 
-<div class="team-container" aria-live="polite" aria-atomic="t
+  <div class="team-box" aria-live="polite" aria-atomic="true">
+    <div class="team-member active">Our Team Members: Arsh Jahagirdar</div>
+    <div class="team-member">Our Team Members: Nakul Gehlot</div>
+    <div class="team-member">Our Team Members: Shiv Koli</div>
+  </div>
+
+  <script>
+    const members = document.querySelectorAll('.team-member');
+    let currentIndex = 0;
+    setInterval(() => {
+      members[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % members.length;
+      members[currentIndex].classList.add('active');
+    }, 3500);
+  </script>
+
+</body>
+</html>
