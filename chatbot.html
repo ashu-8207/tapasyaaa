@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tapasyaa - Chatbot Support</title>
+  <title>Tapasyaa - Friendly Chatbot</title>
   <style>
     body {
-      background: #d0f0f7; /* pastel blue-green */
+      background: #d0f0f7;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column;
       min-height: 100vh;
       color: #034d4d;
     }
     header, footer {
-      background: #a2d5c6; /* pastel green */
+      background: #a2d5c6;
       color: #033f3f;
       text-align: center;
       padding: 1rem 0;
@@ -121,33 +119,39 @@
   const form = document.getElementById('chat-form');
   const input = document.getElementById('user-input');
 
-  // Gentle bot responses based on keywords
-  function getBotResponse(text) {
-    text = text.toLowerCase();
-    if (text.includes('sad') || text.includes('depressed')) {
-      return "I'm sorry you're feeling sad. Remember, it's okay to reach out and talk to someone. You're not alone.";
-    }
-    if (text.includes('anxious') || text.includes('anxiety')) {
-      return "Anxiety can be tough. Try taking deep breaths and grounding yourself in the present moment.";
-    }
-    if (text.includes('help') || text.includes('support')) {
-      return "I'm here to support you. If things feel overwhelming, consider booking a session with a therapist.";
-    }
-    if (text.includes('suicidal') || text.includes('suicide')) {
-      return "If you're having suicidal thoughts, please reach out immediately to a trusted person or call a helpline.";
-    }
-    if (text.trim() === '') {
-      return "Please type something so I can assist you better.";
-    }
-    return "Thank you for sharing. How else can I assist you today?";
-  }
-
   function appendMessage(text, className) {
     const msg = document.createElement('div');
     msg.classList.add('message', className);
     msg.textContent = text;
     chat.appendChild(msg);
     chat.scrollTop = chat.scrollHeight;
+  }
+
+  function getBotResponse(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('sad') || lower.includes('depressed')) {
+      return "I'm sorry you're feeling sad. Remember, you're not alone — it's okay to seek support.";
+    }
+    if (lower.includes('anxious') || lower.includes('anxiety')) {
+      return "Anxiety can be tough. Try deep breathing and grounding yourself in the moment.";
+    }
+    if (lower.includes('help') || lower.includes('support')) {
+      return "I'm here for you. Consider booking a session with a therapist if you want more help.";
+    }
+    if (lower.includes('suicide') || lower.includes('suicidal')) {
+      return "If you're having suicidal thoughts, please reach out immediately to a trusted person or helpline.";
+    }
+    if (lower.trim() === '') {
+      return "Please type something so I can assist you better.";
+    }
+    // Friendly fallback with slight randomness
+    const fallbackResponses = [
+      "Thanks for sharing. How else can I support you today?",
+      "I'm listening. Tell me more.",
+      "That sounds important. Want to talk more about it?",
+      "I'm here to help in any way I can."
+    ];
+    return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
   }
 
   form.addEventListener('submit', e => {
@@ -158,10 +162,17 @@
     appendMessage(userText, 'user');
     input.value = '';
 
+    // Show bot is typing
+    const typingMsg = document.createElement('div');
+    typingMsg.classList.add('message', 'bot');
+    typingMsg.textContent = '...typing';
+    chat.appendChild(typingMsg);
+    chat.scrollTop = chat.scrollHeight;
+
     setTimeout(() => {
-      const botReply = getBotResponse(userText);
-      appendMessage(botReply, 'bot');
-    }, 700);
+      typingMsg.remove();
+      appendMessage(getBotResponse(userText), 'bot');
+    }, 1000 + Math.random() * 1000); // random typing delay 1-2 sec
   });
 </script>
 
