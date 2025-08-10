@@ -2,77 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Us - Tapasyaa</title>
+  <title>About Us Test</title>
   <style>
-    body {
-      background: #d0f0f7;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      color: #034d4d;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header, footer {
-      background: #a2d5c6;
-      color: #033f3f;
-      text-align: center;
-      padding: 1rem 0;
-      font-weight: 700;
-    }
-    main {
-      max-width: 700px;
-      margin: 2rem auto 3rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      padding: 2rem 2.5rem;
-      line-height: 1.6;
-      position: relative;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    p {
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-    nav {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    nav a {
-      color: #028080;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0 1rem;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #016868;
-    }
-
-    /* Team section styles */
+    body { font-family: sans-serif; background: #d0f0f7; color: #034d4d; padding: 2rem; }
     .team-container {
-      margin-top: 3rem;
-      text-align: center;
+      margin-top: 2rem;
       background: #e0f7f4;
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
       border-radius: 12px;
-      box-shadow: inset 0 0 15px #a2d5c6;
+      color: #016868;
       font-style: italic;
       font-size: 1.2rem;
-      color: #016868;
-      min-height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      min-height: 50px;
       position: relative;
       overflow: hidden;
     }
-
     .team-member {
       position: absolute;
       width: 100%;
@@ -87,36 +31,14 @@
 </head>
 <body>
 
-<header>
-  <h1>Tapasyaa</h1>
-</header>
+<h1>About Us</h1>
+<p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="chatbot.html">Chatbot</a>
-  <a href="about.html">About Us</a>
-  <a href="crisis.html">Crisis Support</a>
-  <a href="book.html">Book a Session</a>
-</nav>
-
-<main>
-  <h1>About Us</h1>
-  <p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
-  <p>Our mission is to provide compassionate care and resources for those navigating emotional challenges, anxiety, depression, and more. We believe that seeking help is a brave and vital step towards healing.</p>
-  <p>Through this platform, you can connect with trained therapists, access crisis support, and chat with our empathetic Tapasyaa Bot designed to offer comfort and guidance.</p>
-  <p>We are committed to creating a calming, welcoming environment where every visitor feels heard and valued.</p>
-  <p>Thank you for trusting us to be part of your journey.</p>
-
-  <div class="team-container" aria-live="polite" aria-atomic="true">
-    <div class="team-member active">Our Team Members: Arsh Jahagirdar</div>
-    <div class="team-member">Our Team Members: Nakul Gehlot</div>
-    <div class="team-member">Our Team Members: Shiv Koli</div>
-  </div>
-</main>
-
-<footer>
-  &copy; 2025 Tapasyaa. All rights reserved.
-</footer>
+<div class="team-container" aria-live="polite" aria-atomic="true">
+  <div class="team-member active">Our Team Members: Arsh Jahagirdar</div>
+  <div class="team-member">Our Team Members: Nakul Gehlot</div>
+  <div class="team-member">Our Team Members: Shiv Koli</div>
+</div>
 
 <script>
   const members = document.querySelectorAll('.team-member');
@@ -126,9 +48,8 @@
     members[index].classList.remove('active');
     index = (index + 1) % members.length;
     members[index].classList.add('active');
-  }, 3500); // change every 3.5 seconds
+  }, 3500);
 </script>
 
 </body>
 </html>
-
