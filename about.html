@@ -2,76 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us - Tapasyaa</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #d0f0f7;
-      color: #034d4d;
-      margin: 40px auto;
-      max-width: 700px;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-    .team-box {
-      margin-top: 50px;
-      background-color: #e0f7f4;
-      border-radius: 12px;
-      padding: 25px;
-      font-style: italic;
-      font-size: 1.3rem;
-      color: #016868;
-      min-height: 50px;
-      position: relative;
-      overflow: hidden;
-    }
-    .team-member {
-      opacity: 0;
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: opacity 1s ease-in-out;
-    }
-    .team-member.active {
-      opacity: 1;
-      position: relative;
-      transform: none;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg-blue-50 font-sans text-gray-800 min-h-screen">
+  <header class="bg-blue-200 p-6 shadow-md text-center">
+    <h1 class="text-4xl font-bold text-blue-900">About Us</h1>
+    <p class="text-blue-700 mt-1">Meet the team behind Tapasyaa</p>
+  </header>
 
-  <h1>About Us</h1>
-  <p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
-  <p>Our mission is to provide compassionate care and resources for those navigating emotional challenges, anxiety, depression, and more. We believe that seeking help is a brave and vital step towards healing.</p>
-  <p>Through this platform, you can connect with trained therapists, access crisis support, and chat with our empathetic Tapasyaa Bot designed to offer comfort and guidance.</p>
-  <p>We are committed to creating a calming, welcoming environment where every visitor feels heard and valued.</p>
-  <p>Thank you for trusting us to be part of your journey.</p>
+  <main class="max-w-5xl mx-auto px-6 py-12">
+    <section class="mb-12 text-center">
+      <p class="text-lg max-w-2xl mx-auto">
+        We're a passionate team committed to providing mental health support in a safe and compassionate environment. Here's a little about who we are.
+      </p>
+    </section>
 
-  <div class="team-box" aria-live="polite" aria-atomic="true">
-    <div class="team-member active">Our Team Members: Arsh Jahagirdar</div>
-    <div class="team-member">Our Team Members: Nakul Gehlot</div>
-    <div class="team-member">Our Team Members: Shiv Koli</div>
-  </div>
+    <section class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <!-- Team Member 1 -->
+      <div class="bg-white rounded-lg shadow-md p-6 text-center">
+        <img src="arsh.jpg" alt="Arsh Jahagirdar" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+        <h3 class="text-xl font-semibold text-blue-900">Arsh Jahagirdar</h3>
+        <p class="text-blue-700 text-sm mt-1">Vision & Tech Lead</p>
+      </div>
 
-  <script>
-    const members = document.querySelectorAll('.team-member');
-    let currentIndex = 0;
-    setInterval(() => {
-      members[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % members.length;
-      members[currentIndex].classList.add('active');
-    }, 3500);
-  </script>
+      <!-- Team Member 2 -->
+      <div class="bg-white rounded-lg shadow-md p-6 text-center">
+        <img src="nakul.jpg" alt="Nakul Gehlot" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+        <h3 class="text-xl font-semibold text-blue-900">Nakul Gehlot</h3>
+        <p class="text-blue-700 text-sm mt-1">Operations & Support</p>
+      </div>
 
+      <!-- Team Member 3 -->
+      <div class="bg-white rounded-lg shadow-md p-6 text-center">
+        <img src="shiv.jpg" alt="Shiv Koli" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+        <h3 class="text-xl font-semibold text-blue-900">Shiv Koli</h3>
+        <p class="text-blue-700 text-sm mt-1">Community & Outreach</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-blue-200 text-center p-6 text-blue-900 mt-10">
+    <p>&copy; 2025 Tapasyaa. Built with care.</p>
+  </footer>
 </body>
 </html>
