@@ -1,102 +1,133 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Tapasyaa</title>
+  <style>
+    body {
+      background: #d0f0f7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      color: #034d4d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header, footer {
+      background: #a2d5c6;
+      color: #033f3f;
+      text-align: center;
+      padding: 1rem 0;
+      font-weight: 700;
+    }
+    main {
+      max-width: 700px;
+      margin: 2rem auto 3rem auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      padding: 2rem 2.5rem;
+      line-height: 1.6;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      color: #028080;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #016868;
+    }
+
+    /* Team section styles */
+    .team-container {
+      margin-top: 3rem;
+      text-align: center;
+      background: #e0f7f4;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: inset 0 0 15px #a2d5c6;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #016868;
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .team-member.active {
+      opacity: 1;
+      position: relative;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;About Tapasyaa&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;family=Open+Sans&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Open Sans', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1, h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-[#F1FAEE] text-[#1D3557] flex flex-col min-h-screen"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Navbar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav class="bg-[#A8DADC] p-4 shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 class="text-2xl font-bold"&gt;🧘‍♀️ Tapasyaa&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul class="flex space-x-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="index.html" class="hover:underline"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="book-session.html" class="hover:underline"&gt;Book a Session&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="crisis-management.html" class="hover:underline"&gt;Crisis&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="chatbot.html" class="hover:underline"&gt;Chatbot&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="about.html" class="hover:underline font-semibold"&gt;About&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Hero Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="bg-[#E0FBFC] py-16 px-6 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 class="text-4xl font-bold mb-4"&gt;Our Story&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="max-w-2xl mx-auto text-lg"&gt;Tapasyaa was born from the belief that healing should be gentle, safe, and accessible to everyone — especially when the world feels too heavy.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Mission Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="bg-white py-14 px-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="max-w-3xl mx-auto text-center space-y-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 class="text-3xl font-semibold"&gt;Why We Exist&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="text-lg text-gray-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>In a world full of noise and pressure, *Tapasyaa* offers a soft place to land. We’re not here to fix you — we’re here to sit with you, listen without judgment, and guide you back to yourself.</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="text-lg text-gray-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>Whether you’re feeling overwhelmed, stuck, or simply need a quiet space to breathe — Tapasyaa is your safe haven. 💛</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Values Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="bg-[#F1FAEE] py-12 px-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="max-w-4xl mx-auto text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3 class="text-3xl font-semibold mb-6"&gt;What We Stand For&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid md:grid-cols-3 gap-8 text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg p-6 shadow-sm border border-[#A8DADC]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4 class="text-xl font-semibold mb-2"&gt;🌸 Compassion&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Every message, every session, every resource — built with empathy.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg p-6 shadow-sm border border-[#A8DADC]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4 class="text-xl font-semibold mb-2"&gt;🧘 Safety&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;A calm, judgment-free space to express yourself and be heard.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg p-6 shadow-sm border border-[#A8DADC]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4 class="text-xl font-semibold mb-2"&gt;🌱 Healing&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;We believe healing is a slow, sacred journey — and you're already on the path.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Creator Credit --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="bg-[#E0FBFC] py-10 px-6 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3 class="text-2xl font-semibold mb-2"&gt;Built with love &amp; purpose&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="text-lg"&gt;Created by someone who knows how hard it gets — and how brave healing really is. 🕊️&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Footer --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="bg-[#A8DADC] text-center p-4 mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2025 Tapasyaa. All rights reserved.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<header>
+  <h1>Tapasyaa</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="chatbot.html">Chatbot</a>
+  <a href="about.html">About Us</a>
+  <a href="crisis.html">Crisis Support</a>
+  <a href="book.html">Book a Session</a>
+</nav>
+
+<main>
+  <h1>About Us</h1>
+  <p>Welcome to Tapasyaa — a safe space dedicated to supporting mental health and wellbeing.</p>
+  <p>Our mission is to provide compassionate care and resources for those navigating emotional challenges, anxiety, depression, and more. We believe that seeking help is a brave and vital step towards healing.</p>
+  <p>Through this platform, you can connect with trained therapists, access crisis support, and chat with our empathetic Tapasyaa Bot designed to offer comfort and guidance.</p>
+  <p>We are committed to creating a calming, welcoming environment where every visitor feels heard and valued.</p>
+  <p>Thank you for trusting us to be part of your journey.</p>
+
+  <div class="team-container" aria-live="polite" aria-atomic="true">
+    <div class="team-member active">Our Team Members: Arsh Jahagirdar</div>
+    <div class="team-member">Our Team Members: Nakul Gehlot</div>
+    <div class="team-member">Our Team Members: Shiv Koli</div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Tapasyaa. All rights reserved.
+</footer>
+
+<script>
+  const members = document.querySelectorAll('.team-member');
+  let index = 0;
+
+  setInterval(() => {
+    members[index].classList.remove('active');
+    index = (index + 1) % members.length;
+    members[index].classList.add('active');
+  }, 3500); // change every 3.5 seconds
+</script>
+
 </body>
 </html>
