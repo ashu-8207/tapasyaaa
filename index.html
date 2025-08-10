@@ -1,57 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tapasyaa - Mental Health Support</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fadeInUp {
+      animation: fadeInUp 1s ease forwards;
+    }
+    /* Soft floating circles for subtle background decoration */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      filter: blur(50px);
+      animation: float 6s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-20px) translateX(10px); }
+    }
+  </style>
 </head>
-<body class="bg-blue-50 min-h-screen flex flex-col font-sans text-gray-800">
-  <!-- Header -->
-  <header class="bg-blue-200 p-6 shadow-md">
-    <h1 class="text-4xl font-bold text-center text-blue-900">Tapasyaa</h1>
-    <p class="text-center text-blue-700 mt-1">Safe space for mental health support</p>
+<body class="relative bg-gradient-to-b from-blue-100 via-green-100 to-blue-50 min-h-screen flex flex-col font-sans text-gray-800 overflow-x-hidden">
+
+  <!-- Subtle floating circles background -->
+  <div class="circle w-72 h-72 bg-blue-300 top-10 left-[-80px]"></div>
+  <div class="circle w-96 h-96 bg-green-300 bottom-[-100px] right-[-80px] animation-delay-2000ms"></div>
+  <div class="circle w-64 h-64 bg-blue-200 top-[30vh] right-[20vw] animation-delay-4000ms"></div>
+
+  <header class="bg-blue-200 p-6 shadow-md rounded-b-3xl">
+    <h1 class="text-5xl font-extrabold text-center text-blue-900 fadeInUp">Tapasyaa</h1>
+    <p class="text-center text-blue-700 mt-2 text-lg fadeInUp" style="animation-delay: 0.3s;">
+      A safe space for mental health support
+    </p>
   </header>
 
-  <!-- Navigation -->
-  <nav class="bg-blue-100 shadow-inner">
-    <ul class="flex justify-center flex-wrap space-x-6 md:space-x-8 p-4 text-blue-800 font-semibold text-lg">
-      <li><a href="index.html" class="hover:underline">Home</a></li>
-      <li><a href="book-session.html" class="hover:underline">Book Session</a></li>
-      <li><a href="crisis-management.html" class="hover:underline">Crisis Support</a></li>
-      <li><a href="chatbot.html" class="hover:underline">Chatbot</a></li>
-      <li><a href="about.html" class="hover:underline">About Us</a></li>
+  <nav class="bg-blue-100 shadow-inner mt-6 rounded-lg mx-auto max-w-4xl">
+    <ul class="flex justify-center space-x-8 p-4 text-blue-800 font-semibold text-lg">
+      <li><a href="index.html" class="hover:text-blue-600 transition">Home</a></li>
+      <li><a href="book-session.html" class="hover:text-blue-600 transition">Book Session</a></li>
+      <li><a href="crisis-management.html" class="hover:text-blue-600 transition">Crisis Support</a></li>
+      <li><a href="chatbot.html" class="hover:text-blue-600 transition">Chatbot</a></li>
+      <li><a href="about.html" class="hover:text-blue-600 transition">About Us</a></li>
     </ul>
   </nav>
 
-  <!-- Main Content -->
-  <main class="flex-grow max-w-3xl mx-auto px-6 py-10">
-    <section class="text-center mb-10">
-      <h2 class="text-3xl font-semibold mb-4">Welcome to Tapasyaa</h2>
-      <p class="text-lg max-w-xl mx-auto">
-        Your mental health matters. Book therapy sessions, access crisis support, or chat with our caring AI bot anytime.
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 space-y-10">
+
+    <section class="bg-white bg-opacity-70 rounded-3xl shadow-lg p-8 fadeInUp" style="animation-delay: 0.5s;">
+      <h2 class="text-3xl font-semibold mb-4 text-blue-900">Welcome to Tapasyaa</h2>
+      <p class="text-lg max-w-xl mx-auto text-blue-700 leading-relaxed">
+        Your mental health matters. Book confidential therapy sessions, access crisis support anytime, or chat with our empathetic AI companion.
       </p>
     </section>
 
-    <section>
-      <h3 class="text-2xl font-semibold mb-3">Our Services</h3>
-      <ul class="list-disc list-inside space-y-2 text-left mx-auto max-w-md">
-        <li>Confidential therapy sessions</li>
+    <section class="bg-white bg-opacity-70 rounded-3xl shadow-lg p-8 fadeInUp" style="animation-delay: 0.7s;">
+      <h3 class="text-2xl font-semibold mb-3 text-green-800">Our Services</h3>
+      <ul class="list-disc list-inside space-y-2 text-blue-800 text-lg">
+        <li>Confidential therapy sessions tailored to you</li>
         <li>24/7 crisis management support</li>
-        <li>AI-powered empathetic chatbot</li>
+        <li>AI-powered empathetic chatbot for anytime comfort</li>
       </ul>
     </section>
 
-    <section class="text-center mt-12">
-      <a href="book-session.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+    <section class="text-center fadeInUp" style="animation-delay: 0.9s;">
+      <a href="book-session.html" class="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-3 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition font-semibold text-lg">
         Book a Therapy Session
       </a>
     </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-blue-200 text-center p-6 text-blue-900">
+  <footer class="bg-blue-200 text-center p-6 text-blue-900 rounded-t-3xl mt-10">
     <p>&copy; 2025 Tapasyaa. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
