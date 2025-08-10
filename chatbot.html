@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Tapasyaa Chatbot&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;family=Open+Sans&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Open Sans', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1, h2 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>::-webkit-scrollbar {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>::-webkit-scrollbar-thumb {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #A8DADC;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-[#F1FAEE] text-[#1D3557] flex flex-col min-h-screen"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Navbar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav class="bg-[#A8DADC] p-4 shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 class="text-2xl font-bold"&gt;🧘‍♀️ Tapasyaa&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul class="flex space-x-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="index.html" class="hover:underline"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="book-session.html" class="hover:underline"&gt;Book a Session&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="crisis-management.html" class="hover:underline"&gt;Crisis&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="chatbot.html" class="hover:underline font-semibold"&gt;Chatbot&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="about.html" class="hover:underline"&gt;About&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Chat Area --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="flex-1 px-4 py-8 max-w-3xl mx-auto w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 class="text-3xl font-bold text-center mb-6"&gt;💬 Talk to Tapasyaa&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="chatbox" class="bg-white p-6 rounded-xl shadow-md h-[450px] overflow-y-scroll mb-4 space-y-4 border border-[#A8DADC]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="text-center text-sm text-gray-500"&gt;Tapasyaa is here to gently guide and support you 🌱&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;form id="chat-form" class="flex space-x-2 mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="text" id="user-input" placeholder="How are you feeling today?" class="flex-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A8DADC]" required /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button type="submit" class="bg-[#457B9D] hover:bg-[#1D3557] text-white px-4 py-2 rounded-md transition"&gt;Send&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="bg-[#A8DADC] text-center p-4 mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2025 Tapasyaa. All rights reserved.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Chatbot Logic --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const chatbox = document.getElementById('chatbox');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const form = document.getElementById('chat-form');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const input = document.getElementById('user-input');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const replies = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "sad", response: "I'm really sorry you're feeling this way. Want to share more about it?" },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "anxious", response: "Take a deep breath with me... Inhale slowly... and exhale. You're safe here." },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "depressed", response: "It’s okay to feel this way sometimes. You’re not alone. I’m right here with you 💙" },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "lonely", response: "You’re not alone, I promise. Let’s talk through it, if you’re open to it." },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "help", response: "I’m here to help. Would you like to connect with a therapist or try a calming activity?" },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "panic", response: "Let’s try the 5-4-3-2-1 grounding exercise. Start by naming 5 things you can see around you." },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "angry", response: "Anger is valid. Want to talk about what made you feel this way?" },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "tired", response: "You’ve been carrying a lot. Rest is okay. You deserve to pause and breathe." },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ keyword: "okay", response: "I'm glad to hear that. I’m still here to support you anytime you need it." },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>form.addEventListener('submit', function (e) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const userMessage = input.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!userMessage) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>addMessage('You', userMessage, 'right');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>input.value = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const botMessage = getBotReply(userMessage);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>addMessage('Tapasyaa', botMessage, 'left');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, 600);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function addMessage(sender, text, side) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const messageDiv = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>messageDiv.className = `flex ${side === 'right' ? 'justify-end' : 'justify-start'}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>messageDiv.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-${side === 'right' ? '[#A8DADC]' : '[#E0FBFC]'} max-w-[75%] p-3 rounded-lg text-[#1D3557]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="font-semibold"&gt;${sender}:&lt;/span&gt; ${text}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>chatbox.appendChild(messageDiv);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>chatbox.scrollTop = chatbox.scrollHeight;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getBotReply(input) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const lowerInput = input.toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let pair of replies) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (lowerInput.includes(pair.keyword)) return pair.response;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return "Thank you for sharing. I'm listening — tell me more about how you're feeling 💜";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
