@@ -4,64 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tapasyaaa - Mental Health Support</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Soft fade-in animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
     body {
-      animation: fadeIn 0.6s ease-out;
+      font-family: 'Comfortaa', cursive;
+      min-width: 600px; /* Prevent collapse at extreme zoom out */
+      max-width: 2000px; /* Prevent stretch */
+      margin: 0 auto;
     }
-    /* Gentle hover effect for buttons and nav links */
-    a, button {
-      transition: all 0.3s ease;
+
+    html {
+      font-size: calc(0.7vw + 0.6em); /* Scales text */
+    }
+
+    .fadeIn {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Smooth transition for content resizing */
+    section, header, nav, footer {
+      transition: all 0.3s ease-in-out;
     }
   </style>
 </head>
-<body class="bg-blue-50 min-h-screen flex flex-col font-sans text-gray-800">
+<body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col text-gray-800">
 
   <!-- HEADER -->
-  <header class="bg-blue-200 p-6 shadow-md rounded-b-xl">
-    <h1 class="text-4xl font-bold text-center text-blue-900 tracking-wide">Tapasyaaa</h1>
-    <p class="text-center text-blue-700 mt-1 italic">Safe space for mental health support</p>
+  <header class="bg-gradient-to-r from-blue-300 to-green-300 shadow-md rounded-b-3xl flex flex-col items-center justify-center" style="padding: 4vh 2vw; width: 80vw; max-width: 1100px; margin: auto;">
+    <h1 class="text-5xl font-bold text-white drop-shadow-lg fadeIn">Tapasyaaa</h1>
+    <p class="text-center text-white mt-2 text-lg fadeIn" style="animation-delay: 0.5s;">
+      Your calm and caring mental health space
+    </p>
   </header>
 
-  <!-- NAVIGATION -->
-  <nav class="bg-blue-100 shadow-inner sticky top-0 z-10">
-    <ul class="flex justify-center space-x-8 p-4 text-blue-800 font-semibold">
-      <li><a href="index.html" class="hover:underline hover:text-blue-600">Home</a></li>
-      <li><a href="book-session.html" class="hover:underline hover:text-blue-600">Book Session</a></li>
-      <li><a href="crisis-management.html" class="hover:underline hover:text-blue-600">Crisis Support</a></li>
-      <li><a href="chatbot.html" class="hover:underline hover:text-blue-600">Chatbot</a></li>
-      <li><a href="about.html" class="hover:underline hover:text-blue-600">About Us</a></li>
-      <li><a href="login.html" class="hover:underline hover:text-blue-600">Login</a></li>
-      <li><a href="register.html" class="hover:underline hover:text-blue-600">Register</a></li>
+  <!-- NAVBAR -->
+  <nav class="bg-blue-100 shadow-inner mt-4 rounded-lg w-11/12 max-w-5xl mx-auto">
+    <div class="flex items-center justify-between p-4">
+      <button id="menu-toggle" class="lg:hidden text-blue-900 text-2xl">&#9776;</button>
+      <ul id="menu" class="hidden lg:flex flex-wrap justify-center gap-6 text-blue-900 font-semibold text-lg">
+        <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+        <li><a href="book-session.html" class="hover:text-green-600">Book Session</a></li>
+        <li><a href="crisis-management.html" class="hover:text-green-600">Crisis Support</a></li>
+        <li><a href="chatbot.html" class="hover:text-green-600">Chatbot</a></li>
+        <li><a href="about.html" class="hover:text-green-600">About Us</a></li>
+      </ul>
+    </div>
+    <ul id="mobile-menu" class="hidden flex-col items-center p-4 space-y-4 text-blue-900 font-semibold text-lg lg:hidden">
+      <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+      <li><a href="book-session.html" class="hover:text-green-600">Book Session</a></li>
+      <li><a href="crisis-management.html" class="hover:text-green-600">Crisis Support</a></li>
+      <li><a href="chatbot.html" class="hover:text-green-600">Chatbot</a></li>
+      <li><a href="about.html" class="hover:text-green-600">About Us</a></li>
     </ul>
   </nav>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow max-w-3xl mx-auto px-6 py-10">
-    
-    <section class="text-center mb-10">
-      <h2 class="text-3xl font-semibold mb-4 text-blue-900">Welcome to Tapasyaaa</h2>
-      <p class="text-lg max-w-xl mx-auto text-blue-800">
-        Your mental health matters. Book therapy sessions, access crisis support, or chat with our caring AI bot anytime.
+  <main class="flex-grow max-w-6xl mx-auto px-6 py-8 space-y-8" style="width: 85vw;">
+
+    <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6" style="width: 100%; min-width: 500px;">
+      <h2 class="text-3xl font-semibold mb-4 text-blue-900 flex items-center space-x-3">
+        🌿 <span>Welcome to Tapasyaaa</span>
+      </h2>
+      <p class="text-lg text-blue-700 leading-relaxed">
+        Your mental health matters. Book confidential therapy sessions, access crisis support anytime, or chat with our empathetic AI companion.
       </p>
     </section>
 
-    <section class="bg-blue-100 p-6 rounded-xl shadow-sm">
-      <h3 class="text-2xl font-semibold mb-3 text-blue-900">Our Services</h3>
-      <ul class="list-disc list-inside space-y-2 text-blue-800">
-        <li>Confidential therapy sessions</li>
+    <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6">
+      <h3 class="text-2xl font-semibold mb-3 text-green-700 flex items-center space-x-2">
+        💚 <span>Our Services</span>
+      </h3>
+      <ul class="list-disc list-inside space-y-2 text-blue-800 text-lg">
+        <li>Confidential therapy sessions tailored to you</li>
         <li>24/7 crisis management support</li>
-        <li>AI-powered empathetic chatbot</li>
+        <li>AI-powered empathetic chatbot for anytime comfort</li>
       </ul>
     </section>
 
-    <section class="text-center mt-12">
-      <a href="book-session.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 shadow-md transform hover:scale-105">
+    <section class="text-center">
+      <a href="book-session.html" class="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-3 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition font-semibold text-lg">
         Book a Therapy Session
       </a>
     </section>
@@ -69,9 +97,29 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-blue-200 text-center p-6 text-blue-900 rounded-t-xl shadow-inner">
+  <footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-6 text-white rounded-t-3xl mt-10">
     <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
   </footer>
+
+  <!-- JS for Hamburger Menu -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Adjust content width dynamically on zoom
+    window.addEventListener('resize', () => {
+      const main = document.querySelector('main');
+      const header = document.querySelector('header');
+
+      let vw = window.innerWidth;
+      main.style.width = Math.max(70, Math.min(90, vw / window.outerWidth * 100)) + 'vw';
+      header.style.width = Math.max(60, Math.min(85, vw / window.outerWidth * 100)) + 'vw';
+    });
+  </script>
 
 </body>
 </html>
