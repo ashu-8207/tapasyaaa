@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tapasyaaa</title>
+  <title>CalmChat</title>
   <style>
     body {
       background: #d0f0f7;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0; padding: 0;
       display: flex; flex-direction: column;
-      min-height: 100vh;
+      height: 100vh;
       color: #034d4d;
     }
     header, footer {
@@ -19,55 +19,67 @@
       text-align: center;
       padding: 1rem 0;
       font-weight: 700;
+      flex-shrink: 0;
     }
     main {
-      flex-grow: 1;
+      flex: 1;
       max-width: 600px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      margin: auto;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      padding: 1rem 1.5rem;
-    }
-    h1 {
-      margin-bottom: 1rem;
-      text-align: center;
+      overflow: hidden;
     }
     #chat {
-      flex-grow: 1;
+      flex: 1;
       overflow-y: auto;
       padding: 1rem;
-      border: 1px solid #a2d5c6;
-      border-radius: 8px;
       background: #e0f7f4;
-      margin-bottom: 1rem;
-      max-height: 400px;
+    }
+    .message-row {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 0.8rem;
     }
     .message {
-      max-width: 75%;
-      margin-bottom: 0.8rem;
+      max-width: 65%;
       padding: 0.7rem 1rem;
       border-radius: 20px;
       font-size: 1rem;
       line-height: 1.3;
     }
+    .user-row {
+      justify-content: flex-end;
+    }
+    .bot-row {
+      justify-content: flex-start;
+    }
     .user {
       background: #a2d5c6;
       color: #033f3f;
-      align-self: flex-end;
       border-bottom-right-radius: 0;
     }
     .bot {
       background: #028080;
       color: white;
-      align-self: flex-start;
       border-bottom-left-radius: 0;
     }
-    form {
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #028080;
+      margin: 0 8px;
+      object-fit: cover;
+    }
+    #chat-form {
       display: flex;
       gap: 0.5rem;
+      padding: 0.5rem;
+      background: white;
+      border-top: 1px solid #a2d5c6;
+      position: sticky;
+      bottom: 0;
     }
     input[type="text"] {
       flex-grow: 1;
@@ -119,12 +131,30 @@
   const form = document.getElementById('chat-form');
   const input = document.getElementById('user-input');
 
-  function appendMessage(text, className) {
+  function appendMessage(text, className, isUser) {
+    const row = document.createElement('div');
+    row.classList.add('message-row', isUser ? 'user-row' : 'bot-row');
+
+    const avatar = document.createElement('img');
+    avatar.classList.add('avatar');
+    avatar.src = isUser ? 'customer.jpg' : 'bot.jpg';
+
     const msg = document.createElement('div');
     msg.classList.add('message', className);
     msg.textContent = text;
-    chat.appendChild(msg);
+
+    if (isUser) {
+      row.appendChild(msg);
+      row.appendChild(avatar);
+    } else {
+      row.appendChild(avatar);
+      row.appendChild(msg);
+    }
+
+    chat.appendChild(row);
     chat.scrollTop = chat.scrollHeight;
+
+    return row; // return so we can remove it later (for typing)
   }
 
   function getBotResponse(text) {
@@ -144,7 +174,6 @@
     if (lower.trim() === '') {
       return "Please type something so I can assist you better.";
     }
-    // Friendly fallback with slight randomness
     const fallbackResponses = [
       "Thanks for sharing. How else can I support you today?",
       "I'm listening. Tell me more.",
@@ -159,20 +188,16 @@
     const userText = input.value.trim();
     if (!userText) return;
 
-    appendMessage(userText, 'user');
+    appendMessage(userText, 'user', true);
     input.value = '';
 
-    // Show bot is typing
-    const typingMsg = document.createElement('div');
-    typingMsg.classList.add('message', 'bot');
-    typingMsg.textContent = '...typing';
-    chat.appendChild(typingMsg);
-    chat.scrollTop = chat.scrollHeight;
+    // Bot typing indicator with avatar
+    const typingRow = appendMessage("...", 'bot', false);
 
     setTimeout(() => {
-      typingMsg.remove();
-      appendMessage(getBotResponse(userText), 'bot');
-    }, 1000 + Math.random() * 1000);
+      typingRow.remove(); // remove typing indicator
+      appendMessage(getBotResponse(userText), 'bot', false);
+    }, 1000 + Math.random() * 800);
   });
 </script>
 
