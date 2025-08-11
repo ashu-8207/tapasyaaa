@@ -5,36 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tapasyaaa - Mental Health Support</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Soft fade-in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    body {
+      animation: fadeIn 0.6s ease-out;
+    }
+    /* Gentle hover effect for buttons and nav links */
+    a, button {
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
 <body class="bg-blue-50 min-h-screen flex flex-col font-sans text-gray-800">
-  <header class="bg-blue-200 p-6 shadow-md">
-    <h1 class="text-4xl font-bold text-center text-blue-900">Tapasyaaa</h1>
-    <p class="text-center text-blue-700 mt-1">Safe space for mental health support</p>
+
+  <!-- HEADER -->
+  <header class="bg-blue-200 p-6 shadow-md rounded-b-xl">
+    <h1 class="text-4xl font-bold text-center text-blue-900 tracking-wide">Tapasyaaa</h1>
+    <p class="text-center text-blue-700 mt-1 italic">Safe space for mental health support</p>
   </header>
 
-  <nav class="bg-blue-100 shadow-inner">
+  <!-- NAVIGATION -->
+  <nav class="bg-blue-100 shadow-inner sticky top-0 z-10">
     <ul class="flex justify-center space-x-8 p-4 text-blue-800 font-semibold">
-      <li><a href="index.html" class="hover:underline">Home</a></li>
-      <li><a href="book-session.html" class="hover:underline">Book Session</a></li>
-      <li><a href="crisis-management.html" class="hover:underline">Crisis Support</a></li>
-      <li><a href="chatbot.html" class="hover:underline">Chatbot</a></li>
-      <li><a href="about.html" class="hover:underline">About Us</a></li>
-      <li><a href="login.html" class="hover:underline">Login</a></li>
-      <li><a href="register.html" class="hover:underline">Register</a></li>
+      <li><a href="index.html" class="hover:underline hover:text-blue-600">Home</a></li>
+      <li><a href="book-session.html" class="hover:underline hover:text-blue-600">Book Session</a></li>
+      <li><a href="crisis-management.html" class="hover:underline hover:text-blue-600">Crisis Support</a></li>
+      <li><a href="chatbot.html" class="hover:underline hover:text-blue-600">Chatbot</a></li>
+      <li><a href="about.html" class="hover:underline hover:text-blue-600">About Us</a></li>
+      <li><a href="login.html" class="hover:underline hover:text-blue-600">Login</a></li>
+      <li><a href="register.html" class="hover:underline hover:text-blue-600">Register</a></li>
     </ul>
   </nav>
 
+  <!-- MAIN CONTENT -->
   <main class="flex-grow max-w-3xl mx-auto px-6 py-10">
+    
     <section class="text-center mb-10">
-      <h2 class="text-3xl font-semibold mb-4">Welcome to Tapasyaaa</h2>
-      <p class="text-lg max-w-xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-4 text-blue-900">Welcome to Tapasyaaa</h2>
+      <p class="text-lg max-w-xl mx-auto text-blue-800">
         Your mental health matters. Book therapy sessions, access crisis support, or chat with our caring AI bot anytime.
       </p>
     </section>
 
-    <section>
-      <h3 class="text-2xl font-semibold mb-3">Our Services</h3>
-      <ul class="list-disc list-inside space-y-2">
+    <section class="bg-blue-100 p-6 rounded-xl shadow-sm">
+      <h3 class="text-2xl font-semibold mb-3 text-blue-900">Our Services</h3>
+      <ul class="list-disc list-inside space-y-2 text-blue-800">
         <li>Confidential therapy sessions</li>
         <li>24/7 crisis management support</li>
         <li>AI-powered empathetic chatbot</li>
@@ -42,14 +61,17 @@
     </section>
 
     <section class="text-center mt-12">
-      <a href="book-session.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+      <a href="book-session.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 shadow-md transform hover:scale-105">
         Book a Therapy Session
       </a>
     </section>
+
   </main>
 
-  <footer class="bg-blue-200 text-center p-6 text-blue-900">
+  <!-- FOOTER -->
+  <footer class="bg-blue-200 text-center p-6 text-blue-900 rounded-t-xl shadow-inner">
     <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
