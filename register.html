@@ -11,7 +11,7 @@
       font-family: 'Comfortaa', cursive;
     }
     .fadeIn {
-      animation: fadeIn 1s ease forwards;
+      animation: fadeIn 0.6s ease forwards;
       opacity: 0;
     }
     @keyframes fadeIn {
@@ -22,25 +22,82 @@
 <body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col items-center justify-center text-gray-800">
 
   <!-- Header -->
-  <header class="text-center mb-12 fadeIn" style="animation-delay: 0.2s;">
+  <header id="header" class="text-center mb-12 fadeIn" style="animation-delay: 0.2s;">
     <h1 class="text-5xl font-bold text-blue-800">Register</h1>
     <p class="text-lg text-blue-600 mt-2">Choose your registration type</p>
   </header>
 
   <!-- Registration Options -->
-  <div class="flex flex-col space-y-6 w-full max-w-md px-6 fadeIn" style="animation-delay: 0.4s;">
-    <a href="register-patient.html" class="block bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
+  <div id="options" class="flex flex-col space-y-6 w-full max-w-md px-6 fadeIn" style="animation-delay: 0.4s;">
+    <button onclick="showForm('patient')" class="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
       <span class="text-2xl font-semibold text-green-700">🩺 Register as a Patient</span>
-    </a>
-    <a href="register-doctor.html" class="block bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
+    </button>
+    <button onclick="showForm('doctor')" class="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
       <span class="text-2xl font-semibold text-blue-700">👨‍⚕️ Register as a Doctor</span>
-    </a>
+    </button>
+  </div>
+
+  <!-- Registration Form -->
+  <div id="form-container" class="hidden fadeIn w-full max-w-md px-6">
+    <button onclick="goBack()" class="mb-4 text-blue-600 hover:underline">&larr; Back</button>
+    <h2 id="form-title" class="text-3xl font-bold text-center mb-6"></h2>
+    <form class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
+      <div>
+        <label class="block mb-1 text-gray-600">Full Name</label>
+        <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div>
+        <label class="block mb-1 text-gray-600">Email</label>
+        <input type="email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div>
+        <label class="block mb-1 text-gray-600">Password</label>
+        <input type="password" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+      </div>
+      <div id="extra-field"></div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">Register</button>
+    </form>
   </div>
 
   <!-- Footer -->
   <footer class="mt-16 text-center text-blue-600 fadeIn" style="animation-delay: 0.6s;">
     <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
   </footer>
+
+  <script>
+    function showForm(type) {
+      document.getElementById('options').classList.add('hidden');
+      document.getElementById('header').classList.add('hidden');
+      document.getElementById('form-container').classList.remove('hidden');
+
+      const title = document.getElementById('form-title');
+      const extraField = document.getElementById('extra-field');
+
+      if (type === 'patient') {
+        title.textContent = "Register as a Patient";
+        extraField.innerHTML = `
+          <div>
+            <label class="block mb-1 text-gray-600">Health ID</label>
+            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+          </div>
+        `;
+      } else {
+        title.textContent = "Register as a Doctor";
+        extraField.innerHTML = `
+          <div>
+            <label class="block mb-1 text-gray-600">Medical License Number</label>
+            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
+          </div>
+        `;
+      }
+    }
+
+    function goBack() {
+      document.getElementById('form-container').classList.add('hidden');
+      document.getElementById('options').classList.remove('hidden');
+      document.getElementById('header').classList.remove('hidden');
+    }
+  </script>
 
 </body>
 </html>
