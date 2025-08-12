@@ -1,186 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CalmChat</title>
-  <style>
-    body {
-      background: #d0f0f7;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      display: flex; flex-direction: column;
-      height: 100vh;
-      color: #034d4d;
-    }
-    header, footer {
-      background: #a2d5c6;
-      color: #033f3f;
-      text-align: center;
-      padding: 1rem 0;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    main {
-      flex: 1;
-      max-width: 600px;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      background: #e0f7f4;
-    }
-    .message-row {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 0.8rem;
-    }
-    .message {
-      max-width: 65%;
-      padding: 0.7rem 1rem;
-      border-radius: 20px;
-      font-size: 1rem;
-      line-height: 1.3;
-    }
-    .user-row {
-      justify-content: flex-end;
-    }
-    .bot-row {
-      justify-content: flex-start;
-    }
-    .user {
-      background: #a2d5c6;
-      color: #033f3f;
-      border-bottom-right-radius: 0;
-    }
-    .bot {
-      background: #028080;
-      color: white;
-      border-bottom-left-radius: 0;
-    }
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #028080;
-      margin: 0 8px;
-      object-fit: cover;
-    }
-    #chat-form {
-      display: flex;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      background: white;
-      border-top: 1px solid #a2d5c6;
-      position: sticky;
-      bottom: 0;
-    }
-    input[type="text"] {
-      flex-grow: 1;
-      border-radius: 20px;
-      border: 1px solid #a2d5c6;
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      outline: none;
-    }
-    input[type="text"]:focus {
-      border-color: #028080;
-      box-shadow: 0 0 5px #028080;
-    }
-    button {
-      background: #028080;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 0 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #016868;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>CalmChat</h1>
-</header>
-
-<main>
-  <div id="chat" aria-live="polite" aria-label="Chat messages"></div>
-  <form id="chat-form" aria-label="Chat input form">
-    <input type="text" id="user-input" placeholder="How are you feeling today?" autocomplete="off" required />
-    <button type="submit">Send</button>
-  </form>
-</main>
-
-<footer>
-  &copy; 2025 Tapasyaaa. All rights reserved.
-</footer>
-
 <script>
   const chat = document.getElementById('chat');
   const form = document.getElementById('chat-form');
   const input = document.getElementById('user-input');
 
-  function appendMessage(text, className, isUser) {
+  const customerIcon = '<img src="customer.jpg" alt="Customer" class="w-8 h-8 ml-2 rounded-full ring-2 ring-teal-500">';
+  const botIcon = '<img src="bot.jpg" alt="Bot" class="w-8 h-8 mr-2 rounded-full ring-2 ring-teal-500">';
+
+  // Show input from start
+  form.classList.remove('hidden');
+
+  function appendMessage(text, sender, isTyping = false) {
     const row = document.createElement('div');
-    row.classList.add('message-row', isUser ? 'user-row' : 'bot-row');
+    row.className = `flex items-end mb-3 ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
 
-    const avatar = document.createElement('img');
-    avatar.classList.add('avatar');
-    avatar.src = isUser ? 'customer.jpg' : 'bot.jpg';
+    if (sender === 'bot') {
+      const iconWrapper = document.createElement('div');
+      iconWrapper.className = 'flex-shrink-0';
+      iconWrapper.innerHTML = botIcon;
+      row.appendChild(iconWrapper);
+    }
 
-    const msg = document.createElement('div');
-    msg.classList.add('message', className);
-    msg.textContent = text;
+    const bubble = document.createElement('div');
+    bubble.className = `max-w-[80%] px-4 py-2 rounded-2xl text-base leading-snug ${
+      sender === 'user' ? 'bg-teal-300 text-teal-900 rounded-br-none' : 'bg-teal-700 text-white rounded-bl-none'
+    }`;
+    bubble.innerHTML = isTyping ? '<span class="italic">Typing...</span>' : text;
+    row.appendChild(bubble);
 
-    if (isUser) {
-      row.appendChild(msg);
-      row.appendChild(avatar);
-    } else {
-      row.appendChild(avatar);
-      row.appendChild(msg);
+    if (sender === 'user') {
+      const iconWrapper = document.createElement('div');
+      iconWrapper.className = 'flex-shrink-0';
+      iconWrapper.innerHTML = customerIcon;
+      row.appendChild(iconWrapper);
     }
 
     chat.appendChild(row);
     chat.scrollTop = chat.scrollHeight;
-
-    return row; // return so we can remove it later (for typing)
   }
 
-  function getBotResponse(text) {
-    const lower = text.toLowerCase();
-    if (lower.includes('sad') || lower.includes('depressed')) {
-      return "I'm sorry you're feeling sad. Remember, you're not alone — it's okay to seek support.";
+  // Bot responses (loop removed)
+  function botReply(userText) {
+    const lower = userText.toLowerCase();
+    let reply = "Got it!";
+
+    if (lower.includes("hello") || lower.includes("hi")) {
+      reply = "Hello! How can I help you?";
+    } else if (lower.includes("price")) {
+      reply = "Could you tell me which product you're interested in?";
+    } else if (lower.includes("bye")) {
+      reply = "Goodbye! Have a great day.";
     }
-    if (lower.includes('anxious') || lower.includes('anxiety')) {
-      return "Anxiety can be tough. Try deep breathing and grounding yourself in the moment.";
-    }
-    if (lower.includes('help') || lower.includes('support')) {
-      return "I'm here for you. Consider booking a session with a therapist if you want more help.";
-    }
-    if (lower.includes('suicide') || lower.includes('suicidal')) {
-      return "If you're having suicidal thoughts, please reach out immediately to a trusted person or helpline.";
-    }
-    if (lower.trim() === '') {
-      return "Please type something so I can assist you better.";
-    }
-    const fallbackResponses = [
-      "Thanks for sharing. How else can I support you today?",
-      "I'm listening. Tell me more.",
-      "That sounds important. Want to talk more about it?",
-      "I'm here to help in any way I can."
-    ];
-    return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+
+    appendMessage(reply, 'bot');
   }
 
   form.addEventListener('submit', e => {
@@ -188,18 +59,12 @@
     const userText = input.value.trim();
     if (!userText) return;
 
-    appendMessage(userText, 'user', true);
+    appendMessage(userText, 'user');
     input.value = '';
-
-    // Bot typing indicator with avatar
-    const typingRow = appendMessage("...", 'bot', false);
-
-    setTimeout(() => {
-      typingRow.remove(); // remove typing indicator
-      appendMessage(getBotResponse(userText), 'bot', false);
-    }, 1000 + Math.random() * 800);
+    botReply(userText);
   });
-</script>
 
-</body>
-</html>
+  window.onload = () => {
+    appendMessage("Hello! I'm Yati 😊 How can I help you today?", 'bot');
+  }
+</script>
