@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yati — Mental Health Chat</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #a8dadc, #d0f0c0);
+    }
+  </style>
 </head>
-<body class="bg-gray-900 min-h-screen flex items-center justify-center text-white">
+<body class="min-h-screen flex items-center justify-center text-gray-800">
 
-  <div class="w-full max-w-lg bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-    <div class="px-5 py-4 bg-gray-900 border-b border-gray-700 flex items-center gap-2">
-      <div class="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse"></div>
-      <h1 class="text-lg font-semibold">Yati</h1>
+  <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden border border-green-100">
+    <div class="px-5 py-4 bg-gradient-to-r from-green-200 to-blue-200 border-b border-green-300 flex items-center gap-2">
+      <div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
+      <h1 class="text-lg font-semibold text-green-900">Yati</h1>
     </div>
 
-    <div id="chat" class="h-[70vh] overflow-y-auto p-4 space-y-3 bg-gray-800"></div>
+    <div id="chat" class="h-[70vh] overflow-y-auto p-4 space-y-3 bg-gradient-to-br from-blue-50 to-green-50"></div>
 
-    <form id="chat-form" class="flex items-center gap-2 p-3 bg-gray-900 border-t border-gray-700">
+    <form id="chat-form" class="flex items-center gap-2 p-3 bg-gradient-to-r from-green-100 to-blue-100 border-t border-green-200">
       <input id="user-input" type="text" placeholder="Type your answer..."
-        class="flex-1 px-4 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none" />
+        class="flex-1 px-4 py-2 rounded-lg bg-white border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-300" />
       <button type="submit"
-        class="px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500">Send</button>
+        class="px-4 py-2 rounded-lg bg-green-400 hover:bg-green-500 text-white">Send</button>
     </form>
   </div>
 
@@ -37,7 +42,9 @@
       const b = document.createElement('div');
       b.className =
         `max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed shadow 
-        ${sender === 'user' ? 'bg-teal-300 text-teal-900 rounded-br-none' : 'bg-teal-700 text-white rounded-bl-none'}`;
+        ${sender === 'user'
+          ? 'bg-green-200 text-green-900 rounded-br-none'
+          : 'bg-blue-200 text-blue-900 rounded-bl-none'}`;
       b.innerHTML = text;
       row.appendChild(b);
       chat.appendChild(row);
@@ -53,14 +60,37 @@
       { id: "help", text: "Would you like to book a therapy session?" }
     ];
 
+    const motivationalResponses = {
+      mood: [
+        { keywords: ["sad", "low", "bad", "not good"], text: "I’m sorry you’re feeling this way 💙. Remember, storms don’t last forever — you are stronger than you think." },
+        { keywords: ["stressed", "anxious", "anxiety"], text: "It’s okay to feel anxious sometimes. Take a deep breath — you are safe here and you matter 💚." }
+      ],
+      impact: [
+        { keywords: ["yes"], text: "It’s important to care for yourself. Seeking help is a brave step — and you’re already doing it! 🌟" }
+      ]
+    };
+
     let qIndex = 0;
 
     function askNextQuestion() {
       if (qIndex < questions.length) {
         bubble(questions[qIndex].text);
       } else {
-        bubble(`Thanks for sharing. You can book a therapy session here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">Book Therapy</a>`);
+        bubble(`Thank you for sharing. You can book a therapy session here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline font-semibold">Book Therapy</a> 💚`);
+        bubble("Remember: You are not alone, and every step you take towards healing is a victory 🌿");
       }
+    }
+
+    function checkMotivationalResponse(questionId, userAnswer) {
+      const responses = motivationalResponses[questionId];
+      if (!responses) return null;
+      const lowerAns = userAnswer.toLowerCase();
+      for (let resp of responses) {
+        if (resp.keywords.some(k => lowerAns.includes(k))) {
+          return resp.text;
+        }
+      }
+      return null;
     }
 
     form.addEventListener('submit', e => {
@@ -69,9 +99,19 @@
       if (!text) return;
       bubble(text, 'user');
       answers[questions[qIndex].id] = text;
-      input.value = "";
+
+      const motivation = checkMotivationalResponse(questions[qIndex].id, text);
       qIndex++;
-      setTimeout(askNextQuestion, 500);
+      input.value = "";
+
+      setTimeout(() => {
+        if (motivation) {
+          bubble(motivation);
+          setTimeout(askNextQuestion, 1200);
+        } else {
+          askNextQuestion();
+        }
+      }, 600);
     });
 
     window.onload = () => {
