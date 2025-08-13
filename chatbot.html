@@ -62,11 +62,11 @@
 
     const motivationalResponses = {
       mood: [
-        { keywords: ["sad", "low", "bad", "not good"], text: "I’m sorry you’re feeling this way 💙. Remember, storms don’t last forever — you are stronger than you think." },
-        { keywords: ["stressed", "anxious", "anxiety"], text: "It’s okay to feel anxious sometimes. Take a deep breath — you are safe here and you matter 💚." }
+        { keywords: ["sad", "low", "bad", "not good"], text: "💙 I’m sorry you’re feeling this way. Storms don’t last forever — you are stronger than you think." },
+        { keywords: ["stressed", "anxious", "anxiety"], text: "💚 It’s okay to feel anxious. Take a deep breath — you are safe here and you matter." }
       ],
       impact: [
-        { keywords: ["yes"], text: "It’s important to care for yourself. Seeking help is a brave step — and you’re already doing it! 🌟" }
+        { keywords: ["yes"], text: "🌟 Caring for yourself is powerful — and seeking help is a brave step." }
       ]
     };
 
@@ -77,7 +77,6 @@
         bubble(questions[qIndex].text);
       } else {
         bubble(`Thank you for sharing. You can book a therapy session here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline font-semibold">Book Therapy</a> 💚`);
-        bubble("Remember: You are not alone, and every step you take towards healing is a victory 🌿");
       }
     }
 
