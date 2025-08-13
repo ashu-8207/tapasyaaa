@@ -3,28 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yati — Quick Check-in & Booking</title>
+  <title>Yati — Mental Health Support</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 min-h-screen flex items-center justify-center text-white">
 
-  <!-- App Shell -->
+  <!-- Chat Window -->
   <div class="w-full max-w-lg bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-    <!-- Header -->
     <div class="px-5 py-4 bg-gray-900 border-b border-gray-700 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse"></div>
         <h1 class="text-lg font-semibold">Yati</h1>
       </div>
-      <span class="text-xs text-gray-400">Here to help 💚</span>
+      <span class="text-xs text-gray-400">Here for you 💚</span>
     </div>
 
-    <!-- Chat Area -->
     <div id="chat" class="h-[60vh] overflow-y-auto p-4 space-y-3 bg-gray-800"></div>
 
-    <!-- Input Area (disabled until questions complete) -->
     <form id="chat-form" class="flex items-center gap-2 p-3 bg-gray-900 border-t border-gray-700">
-      <input id="user-input" type="text" placeholder="(Will unlock after the quick check-in)"
+      <input id="user-input" type="text" placeholder="Type your message..."
         class="flex-1 px-4 py-2 rounded-lg bg-gray-700/70 text-white placeholder-gray-400 focus:outline-none"
         disabled />
       <button type="submit" disabled
@@ -32,49 +29,31 @@
     </form>
   </div>
 
-  <!-- Overlay Pop-up -->
+  <!-- Questionnaire Overlay -->
   <div id="overlay" class="fixed inset-0 bg-black/60 flex items-center justify-center p-4">
     <div class="w-full max-w-lg bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
       <div class="px-5 py-4 bg-gray-900 border-b border-gray-700">
         <h2 class="text-lg font-semibold">Quick, gentle check-in</h2>
         <p class="text-xs text-gray-400 mt-1">
-          Not a diagnosis. If you’re in immediate danger or thinking about self-harm, call your local emergency number
-          (India: <strong>112</strong>) right now.
+          If you are in immediate danger or thinking of harming yourself, please call your local emergency number (India: <strong>112</strong>) immediately.
         </p>
       </div>
-
-      <!-- Question Stream -->
       <div id="qstream" class="p-4 space-y-4 max-h-[60vh] overflow-y-auto"></div>
-
-      <!-- Footer actions -->
-      <div class="p-4 bg-gray-900 border-t border-gray-700 flex items-center justify-between">
-        <button id="restart" class="text-sm px-3 py-2 rounded-lg bg-gray-700 hover:bg-gray-600">
-          Restart
-        </button>
-        <button id="closeOverlay" class="text-sm px-3 py-2 rounded-lg bg-teal-600 hover:bg-teal-500">
-          Continue to chat
-        </button>
-      </div>
     </div>
   </div>
 
   <script>
-    // ====== CONFIG ======
-    const BOOKING_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing&ouid=101890496371132171429";
+    const BOOKING_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
 
-    // ====== ELEMENTS ======
     const chat = document.getElementById('chat');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('user-input');
     const overlay = document.getElementById('overlay');
     const qstream = document.getElementById('qstream');
-    const closeOverlayBtn = document.getElementById('closeOverlay');
-    const restartBtn = document.getElementById('restart');
 
-    // ====== CHAT HELPERS ======
     function bubble(text, sender = 'bot') {
       const row = document.createElement('div');
-      row.className = `flex items-end ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+      row.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
       const b = document.createElement('div');
       b.className =
         `max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed shadow 
@@ -93,46 +72,12 @@
       chat.scrollTop = chat.scrollHeight;
     }
 
-    // ====== QUESTIONNAIRE LOGIC ======
     const answers = {};
     const questions = [
-      {
-        id: "name",
-        prompt: "Hey, I’m Yati. What’s your first name? (optional)",
-        type: "text",
-        placeholder: "Your name (or leave blank)",
-        optional: true
-      },
-      {
-        id: "mood",
-        prompt: "How are you feeling today?",
-        type: "buttons",
-        options: ["Overwhelmed", "Anxious", "Low", "Sad", "Angry", "Stressed", "Okay"]
-      },
-      {
-        id: "duration",
-        prompt: "Have these feelings been around for about two weeks or more?",
-        type: "buttons",
-        options: ["Yes", "No", "Prefer not to say"]
-      },
-      {
-        id: "impact",
-        prompt: "Is it affecting sleep, appetite, or daily focus?",
-        type: "buttons",
-        options: ["Yes", "No", "Not sure"]
-      },
-      {
-        id: "safety",
-        prompt: "Do you feel safe right now?",
-        type: "buttons",
-        options: ["Yes", "No", "Prefer not to say"]
-      },
-      {
-        id: "consent",
-        prompt: "Would you like a link to book a therapy session now?",
-        type: "buttons",
-        options: ["Yes, please", "Maybe later"]
-      }
+      { id: "name", prompt: "Hi, I'm Yati. What’s your first name?", type: "text" },
+      { id: "mood", prompt: "How are you feeling today?", type: "buttons", options: ["Stressed", "Anxious", "Low", "Okay"] },
+      { id: "duration", prompt: "Has this been going on for more than two weeks?", type: "buttons", options: ["Yes", "No"] },
+      { id: "help", prompt: "Would you like to book a therapy session?", type: "buttons", options: ["Yes", "Maybe later"] }
     ];
 
     let qIndex = 0;
@@ -147,30 +92,18 @@
       wrap.appendChild(label);
 
       if (q.type === "text") {
-        const inpWrap = document.createElement('div');
-        inpWrap.className = "flex gap-2";
         const inp = document.createElement('input');
         inp.type = "text";
-        inp.placeholder = q.placeholder || "";
-        inp.className = "flex-1 px-3 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none";
-        const ok = document.createElement('button');
-        ok.type = "button";
-        ok.textContent = "OK";
-        ok.className = "px-3 py-2 rounded-lg bg-teal-600 hover:bg-teal-500";
-        ok.onclick = () => {
-          answers[q.id] = inp.value.trim();
-          nextQuestion();
-        };
-        inpWrap.appendChild(inp);
-        inpWrap.appendChild(ok);
-        wrap.appendChild(inpWrap);
-
-        // Enter to submit
+        inp.placeholder = "Type here...";
+        inp.className = "w-full px-3 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none";
         inp.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') ok.click();
+          if (e.key === "Enter") {
+            answers[q.id] = inp.value.trim();
+            nextQuestion();
+          }
         });
-
-      } else if (q.type === "buttons") {
+        wrap.appendChild(inp);
+      } else {
         const btnRow = document.createElement('div');
         btnRow.className = "flex flex-wrap gap-2";
         q.options.forEach(opt => {
@@ -192,128 +125,65 @@
     }
 
     function nextQuestion() {
-      // Clear and render next
       qIndex++;
+      qstream.innerHTML = "";
       if (qIndex < questions.length) {
         renderQuestion(questions[qIndex]);
       } else {
-        finishQuestionnaire();
+        finishCheckIn();
       }
     }
 
     function startQuestionnaire() {
-      qstream.innerHTML = "";
       qIndex = 0;
-      answers.clear;
+      qstream.innerHTML = "";
       renderQuestion(questions[qIndex]);
     }
 
-    function finishQuestionnaire() {
-      // Compose a gentle summary + link if opted
-      const name = (answers.name || "").trim();
-      const who = name ? name : "there";
-
-      const safetyConcern =
-        (answers.safety && answers.safety.toLowerCase() === "no");
-
-      const bookNow = (answers.consent && answers.consent.toLowerCase().includes("yes"));
-
-      // Push summary into main chat
-      bubble(`Hi ${who}, thanks for sharing. From what you said — feeling <em>${answers.mood || "..."}</em>, lasting <em>${answers.duration || "..."}</em>, impact <em>${answers.impact || "..."}</em>.`, 'bot');
-
-      if (safetyConcern) {
-        systemNote(
-          `If you're not feeling safe, please contact someone you trust and call your local emergency number now (India: <b>112</b>). You matter.`
-        );
-      }
-
-      if (bookNow) {
-        bubble(
-          `I can help you take the next step. Click the button below to book a therapy session.`,
-          'bot'
-        );
-        const btn = document.createElement('a');
-        btn.href = BOOKING_FORM_URL;
-        btn.target = "_blank";
-        btn.rel = "noopener";
-        btn.className = "inline-block mt-2 px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white";
-        btn.textContent = "Book a Therapy Session";
-        const row = document.createElement('div');
-        row.className = "flex justify-start";
-        row.appendChild(btn);
-        chat.appendChild(row);
-        chat.scrollTop = chat.scrollHeight;
-      } else {
-        bubble(
-          `Whenever you're ready, you can book here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">therapy booking form</a>.`,
-          'bot'
-        );
-      }
-
-      systemNote(
-        `This chat is informational and not a crisis service or a medical diagnosis.`
-      );
-
-      // Enable free chat
-      enableFreeChat();
-      // Close overlay CTA text
-      closeOverlayBtn.textContent = "Open chat";
-    }
-
-    function enableFreeChat() {
-      input.disabled = false;
-      form.querySelector('button[type="submit"]').disabled = false;
-      form.querySelector('button[type="submit"]').className =
-        "px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500";
-      input.placeholder = "Type anything—I'm listening";
-      input.classList.remove("bg-gray-700/70");
-    }
-
-    // ====== INIT ======
-    window.onload = () => {
-      // Greeting in chat (appears behind overlay)
-      bubble("Hello! I’m Yati 😊 I’ll ask a few quick, gentle questions to guide you to the right help.", 'bot');
-      systemNote("You can continue after this short check-in.");
-      startQuestionnaire();
-    };
-
-    // Overlay controls
-    closeOverlayBtn.addEventListener('click', () => {
+    function finishCheckIn() {
       overlay.classList.add('hidden');
-      // If questionnaire not finished, keep overlay open until done
-      if (qIndex < questions.length - 1) {
-        // do nothing extra; user can still see chat but input remains locked
+      bubble(`Thanks for sharing, ${answers.name || "friend"}. I understand you are feeling ${answers.mood}.`);
+      if (answers.help === "Yes") {
+        bubble(`Here’s the link to book your session: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">Book Therapy</a>`);
+      } else {
+        bubble(`Whenever you feel ready, you can use this link: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">Book Therapy</a>`);
       }
-    });
+      enableChat();
+    }
 
-    restartBtn.addEventListener('click', () => {
-      startQuestionnaire();
-    });
+    function enableChat() {
+      input.disabled = false;
+      form.querySelector('button').disabled = false;
+      form.querySelector('button').className =
+        "px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500";
+    }
 
-    // ====== SIMPLE BOT ECHO AFTER CHECK-IN ======
     function botReply(userText) {
       const lower = userText.toLowerCase();
-
-      if (lower.includes("book")) {
-        bubble(
-          `You can book here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">therapy booking form</a>.`,
-          'bot'
-        );
-        return;
+      if (lower.includes("stress") || lower.includes("stressed")) {
+        bubble("I hear you. Stress can be tough. Would you like me to share some relaxation tips?");
+      } else if (lower.includes("anxiety")) {
+        bubble("Anxiety can feel overwhelming. Remember to take slow breaths. You can also book a therapy session.");
+      } else if (lower.includes("help")) {
+        bubble(`You can get help here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline">Book Therapy</a>`);
+      } else {
+        bubble("I’m here for you. Tell me more about how you’re feeling.");
       }
-
-      // Gentle default reply
-      bubble("I hear you. Thanks for sharing. If you'd like, you can book a session now using the button/link above. 💚", 'bot');
     }
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      const userText = input.value.trim();
-      if (!userText) return;
-      bubble(userText, 'user');
+      const text = input.value.trim();
+      if (!text) return;
+      bubble(text, 'user');
       input.value = "";
-      botReply(userText);
+      botReply(text);
     });
+
+    window.onload = () => {
+      bubble("Hello! I’m Yati 😊 Let’s start with a quick check-in.");
+      startQuestionnaire();
+    }
   </script>
 </body>
 </html>
