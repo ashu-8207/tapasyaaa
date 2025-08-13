@@ -5,46 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us - Tapasyaaa</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; will-change: opacity, transform; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.2s; }
+    .delay-2 { transition-delay: 0.4s; }
+    .delay-3 { transition-delay: 0.6s; }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animated-gradient {
+      background: linear-gradient(-45deg, #bfdbfe, #93c5fd, #bfdbfe, #dbeafe);
+      background-size: 400% 400%;
+      animation: gradient-shift 8s ease infinite;
+    }
+    @keyframes gentle-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .hover-pulse:hover { animation: gentle-pulse 0.6s ease-in-out; }
+  </style>
 </head>
 <body class="bg-blue-50 font-sans text-gray-800 min-h-screen">
-  <header class="bg-blue-200 p-6 shadow-md text-center">
-    <h1 class="text-4xl font-bold text-blue-900">About Us</h1>
-    <p class="text-blue-700 mt-1">Meet the team behind Tapasyaaa</p>
+  <!-- HEADER -->
+  <header class="animated-gradient p-6 shadow-md text-center relative overflow-hidden reveal">
+    <h1 class="text-4xl font-bold text-blue-900 relative z-10">About Us</h1>
+    <p class="text-blue-700 mt-1 relative z-10">The Heart and Purpose of Tapasyaaa</p>
   </header>
 
   <main class="max-w-5xl mx-auto px-6 py-12">
-    <section class="mb-12 text-center">
-      <p class="text-lg max-w-2xl mx-auto">
-        We're a passionate team committed to providing mental health support in a safe and compassionate environment. Here's a little about who we are.
+
+    <!-- Emotional Intro -->
+    <section class="mb-12 text-center reveal">
+      <p class="text-lg max-w-3xl mx-auto leading-relaxed">
+        At Tapasyaaa, we know that mental health challenges are not just medical conditions —
+        they are deeply personal journeys that touch every part of life.
+        Our work is rooted in empathy, understanding, and the belief that 
+        every individual has the strength to heal when supported with compassion.
       </p>
     </section>
 
-    <section class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
-      <!-- Team Member 1 -->
-      <div class="bg-white rounded-lg shadow-md p-6 text-center">
-        <img src="arsh.jpg" alt="Arsh Jahagirdar" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+    <!-- What We Do -->
+    <section class="mb-12 reveal">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4 text-center">Our Work & Professional Approach</h2>
+      <p class="text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-6">
+        We offer a safe, confidential environment for emotional healing and personal growth.
+        Through one-on-one counseling, group support sessions, mindfulness training,
+        and positive habit-building programs, we empower people to cope with anxiety,
+        depression, self-doubt, and stress. Our approach blends evidence-based therapy methods
+        with human warmth, ensuring every person feels heard and valued.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-6 mt-6">
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <h3 class="text-lg font-semibold text-green-700">Therapy & Counseling</h3>
+          <p class="text-gray-600 mt-2">Professional guidance to help you process emotions, build resilience, and find stability.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <h3 class="text-lg font-semibold text-blue-700">Community Support</h3>
+          <p class="text-gray-600 mt-2">Group discussions, workshops, and activities that remind you — you’re not alone.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <h3 class="text-lg font-semibold text-purple-700">Mindfulness Practice</h3>
+          <p class="text-gray-600 mt-2">Techniques to reduce stress, improve focus, and develop self-compassion.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <h3 class="text-lg font-semibold text-indigo-700">Personal Growth Plans</h3>
+          <p class="text-gray-600 mt-2">Customized strategies to help you set achievable goals and celebrate progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Human Connection -->
+    <section class="mb-12 reveal text-center">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Our Emotional Commitment</h2>
+      <p class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+        More than just a service, Tapasyaaa is a safe haven. We believe in building trust first,
+        offering guidance second. Every conversation we have is built on integrity, empathy, 
+        and the shared goal of helping you reconnect with your inner strength.  
+        We walk alongside you — celebrating victories and supporting you through setbacks — 
+        because healing is better when it’s done together.
+      </p>
+    </section>
+
+    <!-- TEAM SECTION MOVED TO LAST -->
+    <section class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 mt-16">
+      <div class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl reveal delay-1 hover-pulse">
+        <img loading="lazy" src="arsh.jpg" alt="Arsh Jahagirdar" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm transition duration-300 hover:shadow-lg" />
         <h3 class="text-xl font-semibold text-blue-900">Arsh Jahagirdar</h3>
         <p class="text-blue-700 text-sm mt-1">Vision & Tech Lead</p>
       </div>
-
-      <!-- Team Member 2 -->
-      <div class="bg-white rounded-lg shadow-md p-6 text-center">
-        <img src="nakul.jpg" alt="Nakul Gehlot" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+      <div class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl reveal delay-2 hover-pulse">
+        <img loading="lazy" src="nakul.jpg" alt="Nakul Gehlot" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm transition duration-300 hover:shadow-lg" />
         <h3 class="text-xl font-semibold text-blue-900">Nakul Gehlot</h3>
         <p class="text-blue-700 text-sm mt-1">Operations & Support</p>
       </div>
-
-      <!-- Team Member 3 -->
-      <div class="bg-white rounded-lg shadow-md p-6 text-center">
-        <img src="shiv.jpg" alt="Shiv Koli" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300" />
+      <div class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl reveal delay-3 hover-pulse">
+        <img loading="lazy" src="shiv.jpg" alt="Shiv Koli" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm transition duration-300 hover:shadow-lg" />
         <h3 class="text-xl font-semibold text-blue-900">Shiv Koli</h3>
         <p class="text-blue-700 text-sm mt-1">Community & Outreach</p>
       </div>
     </section>
+
   </main>
 
-  <footer class="bg-blue-200 text-center p-6 text-blue-900 mt-10">
-    <p>&copy; 2025 Tapasyaaa. Built with care.</p>
+  <!-- FOOTER -->
+  <footer class="animated-gradient text-center p-6 text-blue-900 mt-10 relative overflow-hidden reveal">
+    <p class="relative z-10">&copy; 2025 Tapasyaaa. Built with care.</p>
   </footer>
+
+  <script>
+    // Scroll-triggered reveal using Intersection Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
