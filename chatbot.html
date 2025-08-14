@@ -1,33 +1,102 @@
-function botAskQuestion() {
-  if (questionIndex < questions.length) {
-    setTimeout(() => {
-      appendMessage(questions[questionIndex], 'bot');
-    }, 500);
-  } else {
-    setTimeout(() => {
-      // Create bot bubble with button inside
-      const row = document.createElement('div');
-      row.className = "flex items-start justify-start";
+<script>
+  const chat = document.getElementById('chat');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('user-input');
 
-      const bubble = document.createElement('div');
-      bubble.className = "max-w-[80%] px-4 py-3 rounded-2xl text-base leading-snug shadow bg-blue-200 text-gray-800 rounded-bl-none";
+  const questions = [
+    "How are you feeling today? 💙",
+    "Have you been experiencing anxiety or stress lately? 🌿",
+    "Are you finding it hard to concentrate on tasks? 📚",
+    "Have you lost interest in activities you usually enjoy? 🎨",
+    "Do you often feel tired or low on energy? 🔋"
+  ];
 
-      // Add text
-      const text = document.createElement('p');
-      text.innerText = "Thank you for sharing with me. 💙 You can book a therapy session here:";
-      bubble.appendChild(text);
+  const motivationalBoosts = [
+    "I hear you… and I want you to know that it's okay to not feel okay. 💚",
+    "You’re stronger than you think, and just by sharing this, you’re taking a brave step. 🌱",
+    "Even on the toughest days, remember that you matter and your feelings are valid. 💙",
+    "You are not alone in this — I’m here for you. 🤗"
+  ];
 
-      // Add button
-      const button = document.createElement('a');
-      button.href = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
-      button.target = "_blank";
-      button.className = "block mt-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow animate-pulse text-center";
-      button.innerText = "📌 Book a Session";
-      bubble.appendChild(button);
+  let questionIndex = 0;
 
-      row.appendChild(bubble);
-      chat.appendChild(row);
-      chat.scrollTop = chat.scrollHeight;
-    }, 500);
+  function appendMessage(text, sender) {
+    const row = document.createElement('div');
+    row.className = `flex items-start ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = `max-w-[80%] px-4 py-2 rounded-2xl text-base leading-snug shadow ${
+      sender === 'user'
+        ? 'bg-green-200 text-gray-800 rounded-br-none'
+        : 'bg-blue-200 text-gray-800 rounded-bl-none'
+    }`;
+    bubble.innerText = text;
+    row.appendChild(bubble);
+
+    chat.appendChild(row);
+    chat.scrollTop = chat.scrollHeight;
   }
-}
+
+  function botAskQuestion() {
+    if (questionIndex < questions.length) {
+      setTimeout(() => {
+        appendMessage(questions[questionIndex], 'bot');
+      }, 500);
+    } else {
+      setTimeout(() => {
+        // Final bot message with button
+        const row = document.createElement('div');
+        row.className = "flex items-start justify-start";
+
+        const bubble = document.createElement('div');
+        bubble.className = "max-w-[80%] px-4 py-3 rounded-2xl text-base leading-snug shadow bg-blue-200 text-gray-800 rounded-bl-none";
+
+        const text = document.createElement('p');
+        text.innerText = "Thank you for sharing with me. 💙 You can book a therapy session here:";
+        bubble.appendChild(text);
+
+        const button = document.createElement('a');
+        button.href = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
+        button.target = "_blank";
+        button.className = "block mt-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow animate-pulse text-center";
+        button.innerText = "📌 Book a Session";
+        bubble.appendChild(button);
+
+        row.appendChild(bubble);
+        chat.appendChild(row);
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+    }
+  }
+
+  function containsNegativeEmotion(text) {
+    const negatives = ["not good", "sad", "depressed", "anxious", "stressed", "tired", "low", "bad"];
+    return negatives.some(word => text.toLowerCase().includes(word));
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    appendMessage(userText, 'user');
+    input.value = '';
+
+    if (containsNegativeEmotion(userText)) {
+      const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
+      setTimeout(() => appendMessage(boost, 'bot'), 500);
+      setTimeout(() => {
+        questionIndex++;
+        botAskQuestion();
+      }, 1500);
+    } else {
+      questionIndex++;
+      botAskQuestion();
+    }
+  });
+
+  window.onload = () => {
+    appendMessage("Hi there! 💚 I’m Yati, here to listen and support you. Let’s start with a few quick questions to understand how you’re feeling.", 'bot');
+    setTimeout(() => botAskQuestion(), 1500);
+  }
+</script>
