@@ -5,32 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mental Health Chatbot</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-background text-foreground font-[Comfortaa]">
+<body>
 
   <!-- Chat Container -->
-  <div class="flex flex-col items-center justify-center min-h-screen p-4">
-    <div class="glass-card w-full max-w-lg p-6">
-      <h1 class="text-2xl font-bold mb-4 text-center">Your Mental Health Companion</h1>
+  <div class="chat-container">
+    <div class="chat-card">
+      <h1 class="chat-title">Your Mental Health Companion</h1>
       
-      <div id="chat-box" class="space-y-4 mb-4 max-h-[400px] overflow-y-auto">
-        <!-- Messages will be injected here -->
+      <div id="chat-box" class="chat-box">
+        <!-- Messages will appear here -->
       </div>
 
-      <div class="flex gap-2">
+      <div class="input-area">
         <input 
           id="user-input" 
           type="text" 
           placeholder="Type your answer..." 
-          class="flex-1 px-4 py-2 border rounded-lg border-border focus:outline-none focus:ring-2 focus:ring-primary-light"
+          class="chat-input"
         />
-        <button 
-          id="send-btn" 
-          class="btn-primary px-4 py-2"
-        >
-          Send
-        </button>
+        <button id="send-btn" class="send-btn">Send</button>
       </div>
     </div>
   </div>
@@ -45,10 +39,10 @@
     ];
 
     const motivationalBoosts = {
-      anxious: "Remember, it's okay to feel this way. Take a deep breath — you are stronger than you think 💙",
-      stressed: "Stress is temporary, but your strength is lasting 🌿",
-      depressed: "You matter, and your story isn’t over yet 🌈",
-      default: "Every step you take towards self-care is a step towards a brighter tomorrow 🌟"
+      anxious: "It's okay to feel anxious — you are doing your best, and that’s enough 💙",
+      stressed: "Take a slow, deep breath. This moment will pass 🌿",
+      depressed: "You matter deeply, and there is light ahead 🌈",
+      default: "Small steps count too — you’re moving forward 🌟"
     };
 
     let currentQuestion = 0;
@@ -58,7 +52,7 @@
 
     function addMessage(text, sender = 'bot') {
       const msg = document.createElement('div');
-      msg.classList.add('p-3', 'rounded-lg', 'max-w-[80%]', sender === 'bot' ? 'bg-primary-light self-start' : 'bg-secondary-light self-end');
+      msg.classList.add('chat-message', sender === 'bot' ? 'bot' : 'user');
       msg.innerText = text;
       chatBox.appendChild(msg);
       chatBox.scrollTop = chatBox.scrollHeight;
@@ -68,12 +62,12 @@
       if (currentQuestion < questions.length) {
         addMessage(questions[currentQuestion], 'bot');
       } else {
-        // Final message with Book a Session button
         const finalDiv = document.createElement('div');
-        finalDiv.classList.add('p-3', 'rounded-lg', 'bg-primary-light', 'self-start', 'flex', 'flex-col', 'items-start', 'gap-2');
+        finalDiv.classList.add('chat-message', 'bot');
         finalDiv.innerHTML = `
-          <p>You’ve completed the check-in. If you’d like, you can book a session now 💬</p>
-          <a href="https://example.com/book" target="_blank" class="btn-secondary">Book a Session</a>
+          You’ve completed the check-in. If you’d like, you can book a session now 💬
+          <br>
+          <a href="https://example.com/book" target="_blank" class="book-btn">Book a Session</a>
         `;
         chatBox.appendChild(finalDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -86,7 +80,6 @@
 
       addMessage(userText, 'user');
 
-      // Add motivational boost if needed
       if (userText.toLowerCase().includes('anxious')) {
         addMessage(motivationalBoosts.anxious);
       } else if (userText.toLowerCase().includes('stressed')) {
@@ -102,7 +95,6 @@
       userInput.value = '';
     });
 
-    // Start the chat
     askNextQuestion();
   </script>
 </body>
