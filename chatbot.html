@@ -5,19 +5,27 @@ function botAskQuestion() {
     }, 500);
   } else {
     setTimeout(() => {
-      appendMessage("Thank you for sharing with me. 💙 You can book a therapy session here:", 'bot');
-
-      // Button as a chat bubble
+      // Create bot bubble with button inside
       const row = document.createElement('div');
-      row.className = "flex items-start justify-start mt-2";
+      row.className = "flex items-start justify-start";
 
+      const bubble = document.createElement('div');
+      bubble.className = "max-w-[80%] px-4 py-3 rounded-2xl text-base leading-snug shadow bg-blue-200 text-gray-800 rounded-bl-none";
+
+      // Add text
+      const text = document.createElement('p');
+      text.innerText = "Thank you for sharing with me. 💙 You can book a therapy session here:";
+      bubble.appendChild(text);
+
+      // Add button
       const button = document.createElement('a');
       button.href = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
       button.target = "_blank";
-      button.className = "bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow";
+      button.className = "block mt-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow animate-pulse text-center";
       button.innerText = "📌 Book a Session";
+      bubble.appendChild(button);
 
-      row.appendChild(button);
+      row.appendChild(bubble);
       chat.appendChild(row);
       chat.scrollTop = chat.scrollHeight;
     }, 500);
