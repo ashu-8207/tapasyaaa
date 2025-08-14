@@ -42,14 +42,15 @@
 
     function appendMessage(text, sender, html = false) {
       const row = document.createElement('div');
-      row.className = `flex items-end space-x-2 ${sender === 'user' ? 'justify-end flex-row-reverse' : ''}`;
+      row.className = `flex items-end ${sender === 'user' ? 'justify-end' : 'justify-start'} gap-2`;
 
       const avatar = document.createElement('img');
       avatar.src = sender === 'user' ? 'customer.jpg' : 'bot.jpg';
-      avatar.className = 'w-10 h-10 rounded-full object-cover shadow';
+      avatar.alt = sender;
+      avatar.className = "w-8 h-8 rounded-full";
 
       const bubble = document.createElement('div');
-      bubble.className = `max-w-[70%] px-4 py-2 rounded-2xl text-base shadow ${
+      bubble.className = `max-w-[75%] px-4 py-2 rounded-2xl text-base shadow ${
         sender === 'user'
           ? 'bg-green-200 text-gray-800 rounded-br-none'
           : 'bg-blue-200 text-gray-800 rounded-bl-none'
@@ -61,8 +62,14 @@
         bubble.innerText = text;
       }
 
-      row.appendChild(avatar);
-      row.appendChild(bubble);
+      if (sender === 'user') {
+        row.appendChild(bubble);
+        row.appendChild(avatar);
+      } else {
+        row.appendChild(avatar);
+        row.appendChild(bubble);
+      }
+
       chat.appendChild(row);
       chat.scrollTop = chat.scrollHeight;
     }
