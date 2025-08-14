@@ -5,16 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mental Health Chatbot</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #d8f3dc; }
+    #chat {
+      background-color: #f0fdf4;
+      height: 70vh;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .chat-bubble {
+      padding: 0.6rem 1rem;
+      border-radius: 1.2rem;
+      max-width: 75%;
+      word-wrap: break-word;
+    }
+    .bot-msg {
+      background-color: #cce3ff;
+      border-bottom-left-radius: 0.3rem;
+    }
+    .user-msg {
+      background-color: #b7e4c7;
+      border-bottom-right-radius: 0.3rem;
+    }
+  </style>
 </head>
-<body class="bg-green-50 flex items-center justify-center h-screen">
+<body class="flex items-center justify-center min-h-screen">
 
   <div class="w-full max-w-md bg-white rounded-2xl shadow-lg flex flex-col">
-    <div id="chat" class="flex-1 p-4 overflow-y-auto space-y-4"></div>
+    <div id="chat"></div>
     <form id="chat-form" class="p-3 flex border-t border-gray-200">
       <input id="user-input" type="text" placeholder="Type your message..."
-        class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
       <button type="submit"
-        class="ml-2 px-4 py-2 bg-blue-300 hover:bg-blue-400 rounded-lg text-white">Send</button>
+        class="ml-2 px-4 py-2 bg-green-400 hover:bg-green-500 rounded-lg text-white">Send</button>
     </form>
   </div>
 
@@ -41,21 +67,15 @@
     let questionIndex = 0;
 
     function appendMessage(text, sender, html = false) {
-      const row = document.createElement('div');
-      row.className = `flex items-end ${sender === 'user' ? 'justify-end' : 'justify-start'} gap-2`;
+      const msgRow = document.createElement('div');
+      msgRow.className = sender === 'user' ? 'flex justify-end items-end gap-2' : 'flex justify-start items-end gap-2';
 
       const avatar = document.createElement('img');
       avatar.src = sender === 'user' ? 'customer.jpg' : 'bot.jpg';
-      avatar.alt = sender;
       avatar.className = "w-8 h-8 rounded-full";
 
       const bubble = document.createElement('div');
-      bubble.className = `max-w-[75%] px-4 py-2 rounded-2xl text-base shadow ${
-        sender === 'user'
-          ? 'bg-green-200 text-gray-800 rounded-br-none'
-          : 'bg-blue-200 text-gray-800 rounded-bl-none'
-      }`;
-
+      bubble.className = `chat-bubble ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
       if (html) {
         bubble.innerHTML = text;
       } else {
@@ -63,14 +83,14 @@
       }
 
       if (sender === 'user') {
-        row.appendChild(bubble);
-        row.appendChild(avatar);
+        msgRow.appendChild(bubble);
+        msgRow.appendChild(avatar);
       } else {
-        row.appendChild(avatar);
-        row.appendChild(bubble);
+        msgRow.appendChild(avatar);
+        msgRow.appendChild(bubble);
       }
 
-      chat.appendChild(row);
+      chat.appendChild(msgRow);
       chat.scrollTop = chat.scrollHeight;
     }
 
@@ -80,7 +100,7 @@
       } else {
         setTimeout(() => {
           appendMessage(
-            `Thank you for sharing with me. 💙 You can book a therapy session here:<br>
+            `Thank you for sharing with me. 💙<br>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing" target="_blank"
               class="inline-block mt-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow animate-pulse text-center">📌 Book a Session</a>`,
             'bot',
