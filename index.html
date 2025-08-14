@@ -1,156 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tapasyaaa - Mental Health Support</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-        body {
-            font-family: 'Comfortaa', cursive;
-            background: linear-gradient(135deg, hsl(210, 25%, 98%), hsl(150, 40%, 75%));
-            color: hsl(210, 25%, 25%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        .fadeIn {
-            animation: fadeIn 1s ease forwards;
-            opacity: 0;
-            animation-delay: 0.3s;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.15);
-            animation: float 10s infinite ease-in-out;
-        }
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 20%;
-            animation-delay: -3s;
-        }
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            top: 40%;
-            left: 60%;
-            animation-delay: -2s;
-        }
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            top: 70%;
-            left: 10%;
-            animation-delay: -5s;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(15deg); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tapasyaaa - Mental Health Support</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+    body {
+      font-family: 'Comfortaa', cursive;
+      background: linear-gradient(135deg, hsl(210, 25%, 98%), hsl(150, 40%, 75%));
+      color: hsl(210, 25%, 25%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 60px; /* Ensure content isn't hidden under the header */
+    }
+    .fadeIn {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.3s;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.15);
+      animation: float 10s infinite ease-in-out;
+    }
+    .shape-1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 20%;
+      animation-delay: -3s;
+    }
+    .shape-2 {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      left: 60%;
+      animation-delay: -2s;
+    }
+    .shape-3 {
+      width: 100px;
+      height: 100px;
+      top: 70%;
+      left: 10%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
+
+    /* Sticky Navbar Style */
+    nav {
+      position: -webkit-sticky; /* For Safari */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.9); /* Transparent background to blend with scroll */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Padding to make space for the sticky navbar */
+    .main-content {
+      padding-top: 80px; /* Ensure the content doesn't overlap with the navbar */
+    }
+
+    /* Card Styling */
+    .service-card {
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+    .service-card-button {
+      background-color: #64B5F6; /* Light Blue */
+      padding: 10px 20px;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .service-card-button:hover {
+      background-color: #42A5F5; /* Darker Blue */
+    }
+
+    /* Image Style */
+    .service-card img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 15px;
+    }
+
+    /* Soft Color Theme for Cards */
+    .confidential-card {
+      background-color: #B3E5FC; /* Soft Blue */
+    }
+
+    .crisis-card {
+      background-color: #C8E6C9; /* Soft Green */
+    }
+
+    .chatbot-card {
+      background-color: #FFEBEE; /* Soft Pink */
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col text-gray-800">
 
-    <!-- Floating Background Elements -->
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
+  <!-- Floating Background Elements -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
 
-    <!-- Navigation Bar -->
-    <nav class="bg-blue-100 shadow-inner mt-6 rounded-lg mx-auto max-w-4xl fixed w-full z-10 top-0">
-        <ul class="flex justify-center space-x-8 p-4 text-blue-900 font-semibold text-lg">
-            <li><a href="#home" class="hover:text-green-600 transition">Home</a></li>
-            <li><a href="#book-session" class="hover:text-green-600 transition">Book Session</a></li>
-            <li><a href="#crisis-support" class="hover:text-green-600 transition">Crisis Support</a></li>
-            <li><a href="#chatbot" class="hover:text-green-600 transition">Chatbot</a></li>
-            <li><a href="#about" class="hover:text-green-600 transition">About Us</a></li>
-        </ul>
-    </nav>
+  <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full">
+    <h1 class="text-5xl font-bold text-center text-white drop-shadow-lg fadeIn">Tapasyaaa</h1>
+    <p class="text-center text-white mt-2 text-lg fadeIn" style="animation-delay: 0.5s;">
+      Your calm and caring mental health space
+    </p>
+  </header>
 
-    <!-- Main Content -->
+  <!-- Sticky Navbar -->
+  <nav class="bg-blue-100 shadow-inner mt-6 rounded-lg mx-auto max-w-4xl p-4 text-blue-900 font-semibold text-lg fadeIn" style="animation-delay: 0.7s;">
+    <ul class="flex justify-center space-x-8">
+      <li><a href="index.html" class="hover:text-green-600 transition">Home</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing&ouid=101890496371132171429" target="_blank" rel="noopener" class="hover:text-green-600 transition">Book Session</a></li>
+      <li><a href="crisis-management.html" class="hover:text-green-600 transition">Crisis Support</a></li>
+      <li><a href="chatbot.html" class="hover:text-green-600 transition">Chatbot</a></li>
+      <li><a href="login.html" class="hover:text-green-600 transition">Login</a></li>
+      <li><a href="register.html" class="hover:text-green-600 transition">Register</a></li>
+      <li><a href="about.html" class="hover:text-green-600 transition">About Us</a></li>
+    </ul>
+  </nav>
 
-    <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full mt-20">
-        <h1 class="text-5xl font-bold text-center text-white drop-shadow-lg fadeIn">Tapasyaaa</h1>
-        <p class="text-center text-white mt-2 text-lg fadeIn" style="animation-delay: 0.5s;">
-            Your calm and caring mental health space
+  <main class="main-content flex-grow max-w-3xl mx-auto px-6 py-12 space-y-10">
+
+    <!-- Our Services Section -->
+    <section class="fadeIn" style="animation-delay: 1.1s;">
+      <h3 class="text-3xl font-semibold mb-3 text-blue-900 text-center">🌿 Our Services</h3>
+      <p class="text-lg max-w-xl mx-auto text-blue-700 leading-relaxed text-center">
+        Comprehensive mental health support designed around your needs. Choose the approach that feels right for you.
+      </p>
+    </section>
+
+    <!-- Service Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Card 1: Confidential Therapy -->
+      <div class="service-card confidential-card">
+        <img src="https://via.placeholder.com/50x50/007BFF/FFFFFF?text=❤️" alt="Heart" />
+        <h4 class="text-2xl font-semibold text-blue-700 mb-4 text-center">
+          ❤️ Confidential Therapy
+        </h4>
+        <p class="text-lg text-blue-600 text-center mb-6">
+          Connect with a licensed therapist in a safe, private environment. Our one-on-one sessions are tailored to your unique needs and goals.
         </p>
-    </header>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing&ouid=101890496371132171429" target="_blank" rel="noopener" class="service-card-button block text-center">
+          Book Session
+        </a>
+      </div>
 
-    <main class="flex-grow max-w-3xl mx-auto px-6 py-12 space-y-10">
+      <!-- Card 2: 24/7 Crisis Support -->
+      <div class="service-card crisis-card">
+        <img src="https://via.placeholder.com/50x50/FF914D/FFFFFF?text=💬" alt="Chat Bubble" />
+        <h4 class="text-2xl font-semibold text-green-600 mb-4 text-center">
+          💬 24/7 Crisis Support
+        </h4>
+        <p class="text-lg text-green-500 text-center mb-6">
+          Immediate help when you need it most. Our crisis support team is available around the clock for urgent mental health situations.
+        </p>
+        <a href="crisis-management.html" class="service-card-button block text-center">
+          Get Help Now
+        </a>
+      </div>
 
-        <!-- Services Section -->
-        <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-8 fadeIn" style="animation-delay: 0.9s;">
-            <h2 class="text-3xl font-semibold mb-4 text-blue-900 flex items-center space-x-3">
-                <span>🌿</span> 
-                <span>Welcome to Tapasyaaa</span>
-            </h2>
-            <p class="text-lg max-w-xl mx-auto text-blue-700 leading-relaxed">
-                Your mental health matters. Book confidential therapy sessions, access crisis support anytime, or chat with our empathetic AI companion.
-            </p>
-        </section>
+      <!-- Card 3: AI Chatbot Assistant -->
+      <div class="service-card chatbot-card">
+        <img src="https://via.placeholder.com/50x50/4CAF50/FFFFFF?text=🤖" alt="Chatbot" />
+        <h4 class="text-2xl font-semibold text-green-700 mb-4 text-center">
+          🤖 AI Chatbot Assistant
+        </h4>
+        <p class="text-lg text-green-600 text-center mb-6">
+          Your caring companion available anytime. Get instant support, coping strategies, and guidance through our intelligent chatbot.
+        </p>
+        <a href="chatbot.html" class="service-card-button block text-center">
+          Start Chat
+        </a>
+      </div>
+    </section>
 
-        <!-- Our Services Section -->
-        <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-8 fadeIn" style="animation-delay: 1.1s;">
-            <h3 class="text-2xl font-semibold mb-3 text-green-700 flex items-center space-x-2">
-                <span>💚</span> 
-                <span>Our Services</span>
-            </h3>
-            <p class="text-lg text-blue-800 mb-8">Comprehensive mental health support designed around your needs. Choose the approach that feels right for you.</p>
-            
-            <!-- Cards for Services -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1: Confidential Therapy -->
-                <div class="bg-blue-100 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-xl text-blue-800">💙 Confidential Therapy</h3>
-                    <p class="text-blue-700 mt-4 mb-6">Connect with a licensed therapist in a safe, private environment. Tailored one-on-one sessions to meet your unique needs.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing&ouid=101890496371132171429" class="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg inline-block hover:bg-blue-600 transition-all">Book Session</a>
-                </div>
+  </main>
 
-                <!-- Card 2: 24/7 Crisis Support -->
-                <div class="bg-orange-100 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-2xl text-orange-700 mb-4">💬 24/7 Crisis Support</h3>
-                    <p class="text-orange-700 mb-6">Immediate help when you need it most. Our crisis support team is available around the clock for urgent mental situations.</p>
-                    <a href="#crisis-support" class="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg inline-block hover:bg-blue-600 transition-all">Get Help Now</a>
-                </div>
-
-                <!-- Card 3: AI Chatbot Assistant -->
-                <div class="bg-green-100 p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-2xl text-green-700 mb-4">🤖 AI Chatbot Assistant</h3>
-                    <p class="text-green-700 mb-6">Your caring companion available anytime. Get instant support, coping strategies, and guidance through our intelligent chatbot.</p>
-                    <a href="#chatbot" class="bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg inline-block hover:bg-blue-600 transition-all">Start Chat</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Crisis Support Section (Scroll to it via button) -->
-        <section id="crisis-support" class="bg-light p-8 mt-12">
-            <h2 class="text-3xl font-semibold text-blue-800">Crisis Support</h2>
-            <p class="mt-4 text-lg text-gray-700">Here is some information about crisis support...</p>
-        </section>
-
-        <!-- Chatbot Section (Scroll to it via button) -->
-        <section id="chatbot" class="bg-light p-8 mt-12">
-            <h2 class="text-3xl font-semibold text-blue-800">AI Chatbot Assistant</h2>
-            <p class="mt-4 text-lg text-gray-700">Your intelligent chatbot companion is here for support.</p>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-6 text-white rounded-t-3xl mt-10 fadeIn" style="animation-delay: 1.5s;">
-        <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
-    </footer>
+  <footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-6 text-white rounded-t-3xl mt-10 fadeIn" style="animation-delay: 1.5s;">
+    <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
