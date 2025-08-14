@@ -80,11 +80,15 @@
 
     /* Card Styling */
     .service-card {
-      background-color: white;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
     }
     .service-card:hover {
       transform: translateY(-10px);
@@ -100,6 +104,26 @@
     }
     .service-card-button:hover {
       background-color: #45a049;
+    }
+
+    /* Image Style */
+    .service-card img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 15px;
+    }
+
+    /* Card Specific Colors */
+    .confidential-card {
+      background-color: #85C1AE; /* Light Green */
+    }
+
+    .crisis-card {
+      background-color: #FFB6A0; /* Light Peach */
+    }
+
+    .chatbot-card {
+      background-color: #A2DFF7; /* Light Blue */
     }
   </style>
 </head>
@@ -143,7 +167,8 @@
     <!-- Service Cards -->
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Card 1: Confidential Therapy -->
-      <div class="service-card">
+      <div class="service-card confidential-card">
+        <img src="https://via.placeholder.com/50x50/007BFF/FFFFFF?text=❤️" alt="Heart" />
         <h4 class="text-2xl font-semibold text-blue-700 mb-4 text-center">
           ❤️ Confidential Therapy
         </h4>
@@ -156,22 +181,9 @@
       </div>
 
       <!-- Card 2: 24/7 Crisis Support -->
-      <div class="service-card">
+      <div class="service-card crisis-card">
+        <img src="https://via.placeholder.com/50x50/FF914D/FFFFFF?text=💬" alt="Chat Bubble" />
         <h4 class="text-2xl font-semibold text-orange-500 mb-4 text-center">
           💬 24/7 Crisis Support
         </h4>
-        <p class="text-lg text-orange-600 text-center mb-6">
-          Immediate help when you need it most. Our crisis support team is available around the clock for urgent mental health situations.
-        </p>
-        <a href="crisis-management.html" class="service-card-button block text-center">
-          Get Help Now
-        </a>
-      </div>
-
-      <!-- Card 3: AI Chatbot Assistant -->
-      <div class="service-card">
-        <h4 class="text-2xl font-semibold text-green-500 mb-4 text-center">
-          🤖 AI Chatbot Assistant
-        </h4>
-        <p class="text-lg text-green-600 text-center mb-6">
-          Your caring companion available anytime. Get instant support, coping strategies, and guidance through our intelligent chatbot.
+        <p class="text-lg text-orange-600
