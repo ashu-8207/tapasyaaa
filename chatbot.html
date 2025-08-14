@@ -2,112 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yati — Mental Health Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yati - Mental Health Chat</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #a8dadc, #d0f0c0);
-    }
-  </style>
 </head>
-<body class="min-h-screen flex items-center justify-center text-gray-800">
+<body class="bg-gradient-to-br from-green-100 to-blue-100 flex justify-center items-center min-h-screen">
 
-  <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden border border-green-100">
-    <div class="px-5 py-4 bg-gradient-to-r from-green-200 to-blue-200 border-b border-green-300 flex items-center gap-2">
-      <div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-      <h1 class="text-lg font-semibold text-green-900">Yati</h1>
-    </div>
+  <div class="bg-white rounded-2xl shadow-lg w-full max-w-lg flex flex-col overflow-hidden border border-green-200">
+    <!-- Chat area -->
+    <div id="chat" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
 
-    <div id="chat" class="h-[70vh] overflow-y-auto p-4 space-y-3 bg-gradient-to-br from-blue-50 to-green-50"></div>
-
-    <form id="chat-form" class="flex items-center gap-2 p-3 bg-gradient-to-r from-green-100 to-blue-100 border-t border-green-200">
-      <input id="user-input" type="text" placeholder="Type your answer..."
-        class="flex-1 px-4 py-2 rounded-lg bg-white border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-300" />
-      <button type="submit"
-        class="px-4 py-2 rounded-lg bg-green-400 hover:bg-green-500 text-white">Send</button>
+    <!-- Input form -->
+    <form id="chat-form" class="flex border-t border-green-200 bg-green-50 p-3">
+      <input id="user-input" type="text" placeholder="Type your message..." 
+        class="flex-1 px-4 py-2 rounded-lg bg-white border border-green-200 text-gray-800 focus:outline-none" />
+      <button type="submit" class="ml-2 px-4 py-2 bg-green-400 text-white rounded-lg hover:bg-green-500">Send</button>
     </form>
   </div>
 
   <script>
-    const BOOKING_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
-
     const chat = document.getElementById('chat');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('user-input');
 
-    function bubble(text, sender = 'bot') {
+    // List of questions
+    const questions = [
+      "How are you feeling today? 💙",
+      "Have you been experiencing anxiety or stress lately? 🌿",
+      "Are you finding it hard to concentrate on tasks? 📚",
+      "Have you lost interest in activities you usually enjoy? 🎨",
+      "Do you often feel tired or low on energy? 🔋"
+    ];
+
+    // Motivational responses for negative answers
+    const motivationalBoosts = [
+      "I hear you… and I want you to know that it's okay to not feel okay. 💚",
+      "You’re stronger than you think, and just by sharing this, you’re taking a brave step. 🌱",
+      "Even on the toughest days, remember that you matter and your feelings are valid. 💙",
+      "You are not alone in this — I’m here for you. 🤗"
+    ];
+
+    let questionIndex = 0;
+
+    function appendMessage(text, sender) {
       const row = document.createElement('div');
-      row.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
-      const b = document.createElement('div');
-      b.className =
-        `max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed shadow 
-        ${sender === 'user'
-          ? 'bg-green-200 text-green-900 rounded-br-none'
-          : 'bg-blue-200 text-blue-900 rounded-bl-none'}`;
-      b.innerHTML = text;
-      row.appendChild(b);
+      row.className = `flex items-start ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+
+      const bubble = document.createElement('div');
+      bubble.className = `max-w-[80%] px-4 py-2 rounded-2xl text-base leading-snug shadow ${
+        sender === 'user' ? 'bg-green-200 text-gray-800 rounded-br-none' : 'bg-blue-200 text-gray-800 rounded-bl-none'
+      }`;
+      bubble.innerText = text;
+      row.appendChild(bubble);
+
       chat.appendChild(row);
       chat.scrollTop = chat.scrollHeight;
     }
 
-    const answers = {};
-    const questions = [
-      { id: "name", text: "Hi, I’m Yati 😊 What’s your first name?" },
-      { id: "mood", text: "How are you feeling today? 💙" },
-      { id: "duration", text: "Has this feeling been going on for more than two weeks?" },
-      { id: "impact", text: "Is it affecting your daily life like sleep, work, or focus?" },
-      { id: "help", text: "Would you like to book a therapy session?" }
-    ];
-
-    const motivationalLines = [
-      "💚 You’re stronger than you think — this moment doesn’t define you.",
-      "🌟 I’m proud of you for opening up, it’s a brave thing to do.",
-      "🌱 Remember, even the smallest step forward is still progress.",
-      "💙 You’re not alone in this, I’m here with you."
-    ];
-
-    const negativeKeywords = ["not good", "bad", "sad", "anxious", "depressed", "stress", "stressed", "lonely", "tired", "hopeless"];
-
-    let qIndex = 0;
-
-    function askNextQuestion() {
-      if (qIndex < questions.length) {
-        bubble(questions[qIndex].text);
+    function botAskQuestion() {
+      if (questionIndex < questions.length) {
+        setTimeout(() => {
+          appendMessage(questions[questionIndex], 'bot');
+        }, 500);
       } else {
-        bubble(`Thank you for sharing. You can book a therapy session here: <a href="${BOOKING_FORM_URL}" target="_blank" class="underline font-semibold">Book Therapy</a> 💚`);
+        setTimeout(() => {
+          appendMessage("Thank you for sharing with me. 💙 You can book a therapy session here:", 'bot');
+          appendMessage("📌 https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing", 'bot');
+        }, 500);
       }
+    }
+
+    function containsNegativeEmotion(text) {
+      const negatives = ["not good", "sad", "depressed", "anxious", "stressed", "tired", "low", "bad"];
+      return negatives.some(word => text.toLowerCase().includes(word));
     }
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
+      const userText = input.value.trim();
+      if (!userText) return;
 
-      bubble(text, 'user');
-      answers[questions[qIndex].id] = text;
+      appendMessage(userText, 'user');
+      input.value = '';
 
-      // Check if answer contains negative keywords
-      const lowerText = text.toLowerCase();
-      if (negativeKeywords.some(word => lowerText.includes(word))) {
-        const randomMotivation = motivationalLines[Math.floor(Math.random() * motivationalLines.length)];
+      if (containsNegativeEmotion(userText)) {
+        const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
+        setTimeout(() => appendMessage(boost, 'bot'), 500);
         setTimeout(() => {
-          bubble(randomMotivation);
-        }, 500);
-        setTimeout(() => {
-          qIndex++;
-          askNextQuestion();
+          questionIndex++;
+          botAskQuestion();
         }, 1500);
       } else {
-        qIndex++;
-        setTimeout(askNextQuestion, 600);
+        questionIndex++;
+        botAskQuestion();
       }
-
-      input.value = "";
     });
 
+    // Start conversation
     window.onload = () => {
-      askNextQuestion();
+      appendMessage("Hi there! 💚 I’m Yati, here to listen and support you. Let’s start with a few quick questions to understand how you’re feeling.", 'bot');
+      setTimeout(() => botAskQuestion(), 1500);
     }
   </script>
 </body>
