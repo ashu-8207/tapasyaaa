@@ -1,102 +1,109 @@
-<script>
-  const chat = document.getElementById('chat');
-  const form = document.getElementById('chat-form');
-  const input = document.getElementById('user-input');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mental Health Chatbot</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-background text-foreground font-[Comfortaa]">
 
-  const questions = [
-    "How are you feeling today? 💙",
-    "Have you been experiencing anxiety or stress lately? 🌿",
-    "Are you finding it hard to concentrate on tasks? 📚",
-    "Have you lost interest in activities you usually enjoy? 🎨",
-    "Do you often feel tired or low on energy? 🔋"
-  ];
+  <!-- Chat Container -->
+  <div class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="glass-card w-full max-w-lg p-6">
+      <h1 class="text-2xl font-bold mb-4 text-center">Your Mental Health Companion</h1>
+      
+      <div id="chat-box" class="space-y-4 mb-4 max-h-[400px] overflow-y-auto">
+        <!-- Messages will be injected here -->
+      </div>
 
-  const motivationalBoosts = [
-    "I hear you… and I want you to know that it's okay to not feel okay. 💚",
-    "You’re stronger than you think, and just by sharing this, you’re taking a brave step. 🌱",
-    "Even on the toughest days, remember that you matter and your feelings are valid. 💙",
-    "You are not alone in this — I’m here for you. 🤗"
-  ];
+      <div class="flex gap-2">
+        <input 
+          id="user-input" 
+          type="text" 
+          placeholder="Type your answer..." 
+          class="flex-1 px-4 py-2 border rounded-lg border-border focus:outline-none focus:ring-2 focus:ring-primary-light"
+        />
+        <button 
+          id="send-btn" 
+          class="btn-primary px-4 py-2"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
 
-  let questionIndex = 0;
+  <script>
+    const questions = [
+      "Hi there! How are you feeling today?",
+      "Have you been feeling stressed or anxious lately?",
+      "Are you getting enough sleep and rest?",
+      "Do you have someone to talk to when you're feeling low?",
+      "Would you like to book a session with a therapist?"
+    ];
 
-  function appendMessage(text, sender) {
-    const row = document.createElement('div');
-    row.className = `flex items-start ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+    const motivationalBoosts = {
+      anxious: "Remember, it's okay to feel this way. Take a deep breath — you are stronger than you think 💙",
+      stressed: "Stress is temporary, but your strength is lasting 🌿",
+      depressed: "You matter, and your story isn’t over yet 🌈",
+      default: "Every step you take towards self-care is a step towards a brighter tomorrow 🌟"
+    };
 
-    const bubble = document.createElement('div');
-    bubble.className = `max-w-[80%] px-4 py-2 rounded-2xl text-base leading-snug shadow ${
-      sender === 'user'
-        ? 'bg-green-200 text-gray-800 rounded-br-none'
-        : 'bg-blue-200 text-gray-800 rounded-bl-none'
-    }`;
-    bubble.innerText = text;
-    row.appendChild(bubble);
+    let currentQuestion = 0;
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
 
-    chat.appendChild(row);
-    chat.scrollTop = chat.scrollHeight;
-  }
-
-  function botAskQuestion() {
-    if (questionIndex < questions.length) {
-      setTimeout(() => {
-        appendMessage(questions[questionIndex], 'bot');
-      }, 500);
-    } else {
-      setTimeout(() => {
-        // Final bot message with button
-        const row = document.createElement('div');
-        row.className = "flex items-start justify-start";
-
-        const bubble = document.createElement('div');
-        bubble.className = "max-w-[80%] px-4 py-3 rounded-2xl text-base leading-snug shadow bg-blue-200 text-gray-800 rounded-bl-none";
-
-        const text = document.createElement('p');
-        text.innerText = "Thank you for sharing with me. 💙 You can book a therapy session here:";
-        bubble.appendChild(text);
-
-        const button = document.createElement('a');
-        button.href = "https://docs.google.com/forms/d/e/1FAIpQLSdG8BIw4bHRIJ9MgZ_A7yA3Qvmx2fvqo_Lr2DuEZqlGXorX1A/viewform?usp=sharing";
-        button.target = "_blank";
-        button.className = "block mt-2 bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow animate-pulse text-center";
-        button.innerText = "📌 Book a Session";
-        bubble.appendChild(button);
-
-        row.appendChild(bubble);
-        chat.appendChild(row);
-        chat.scrollTop = chat.scrollHeight;
-      }, 500);
+    function addMessage(text, sender = 'bot') {
+      const msg = document.createElement('div');
+      msg.classList.add('p-3', 'rounded-lg', 'max-w-[80%]', sender === 'bot' ? 'bg-primary-light self-start' : 'bg-secondary-light self-end');
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
-  }
 
-  function containsNegativeEmotion(text) {
-    const negatives = ["not good", "sad", "depressed", "anxious", "stressed", "tired", "low", "bad"];
-    return negatives.some(word => text.toLowerCase().includes(word));
-  }
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const userText = input.value.trim();
-    if (!userText) return;
-
-    appendMessage(userText, 'user');
-    input.value = '';
-
-    if (containsNegativeEmotion(userText)) {
-      const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
-      setTimeout(() => appendMessage(boost, 'bot'), 500);
-      setTimeout(() => {
-        questionIndex++;
-        botAskQuestion();
-      }, 1500);
-    } else {
-      questionIndex++;
-      botAskQuestion();
+    function askNextQuestion() {
+      if (currentQuestion < questions.length) {
+        addMessage(questions[currentQuestion], 'bot');
+      } else {
+        // Final message with Book a Session button
+        const finalDiv = document.createElement('div');
+        finalDiv.classList.add('p-3', 'rounded-lg', 'bg-primary-light', 'self-start', 'flex', 'flex-col', 'items-start', 'gap-2');
+        finalDiv.innerHTML = `
+          <p>You’ve completed the check-in. If you’d like, you can book a session now 💬</p>
+          <a href="https://example.com/book" target="_blank" class="btn-secondary">Book a Session</a>
+        `;
+        chatBox.appendChild(finalDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
     }
-  });
 
-  window.onload = () => {
-    appendMessage("Hi there! 💚 I’m Yati, here to listen and support you. Let’s start with a few quick questions to understand how you’re feeling.", 'bot');
-    setTimeout(() => botAskQuestion(), 1500);
-  }
-</script>
+    sendBtn.addEventListener('click', () => {
+      const userText = userInput.value.trim();
+      if (!userText) return;
+
+      addMessage(userText, 'user');
+
+      // Add motivational boost if needed
+      if (userText.toLowerCase().includes('anxious')) {
+        addMessage(motivationalBoosts.anxious);
+      } else if (userText.toLowerCase().includes('stressed')) {
+        addMessage(motivationalBoosts.stressed);
+      } else if (userText.toLowerCase().includes('depressed')) {
+        addMessage(motivationalBoosts.depressed);
+      } else if (userText.toLowerCase().includes('not good')) {
+        addMessage(motivationalBoosts.default);
+      }
+
+      currentQuestion++;
+      setTimeout(askNextQuestion, 600);
+      userInput.value = '';
+    });
+
+    // Start the chat
+    askNextQuestion();
+  </script>
+</body>
+</html>
