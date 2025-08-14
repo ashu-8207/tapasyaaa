@@ -16,7 +16,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 60px; /* Ensure the content doesn't get hidden under the navbar */
+      padding-top: 60px; /* Ensure content isn't hidden under the header */
     }
     .fadeIn {
       animation: fadeIn 1s ease forwards;
@@ -63,16 +63,19 @@
       50% { transform: translateY(-30px) rotate(15deg); }
     }
 
-    /* Fixed Navbar Style */
+    /* Sticky Navbar Style */
     nav {
-      position: fixed;
+      position: -webkit-sticky; /* For Safari */
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000; /* Ensures it's always on top */
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.9); /* Transparent background to blend with scroll */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
+    /* Padding to make space for the sticky navbar */
     .main-content {
-      padding-top: 80px; /* Adjust for the height of the navbar */
+      padding-top: 80px; /* Ensure the content doesn't overlap with the navbar */
     }
   </style>
 </head>
@@ -83,7 +86,14 @@
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
 
-  <!-- Fixed Navbar -->
+  <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full">
+    <h1 class="text-5xl font-bold text-center text-white drop-shadow-lg fadeIn">Tapasyaaa</h1>
+    <p class="text-center text-white mt-2 text-lg fadeIn" style="animation-delay: 0.5s;">
+      Your calm and caring mental health space
+    </p>
+  </header>
+
+  <!-- Sticky Navbar -->
   <nav class="bg-blue-100 shadow-inner mt-6 rounded-lg mx-auto max-w-4xl p-4 text-blue-900 font-semibold text-lg fadeIn" style="animation-delay: 0.7s;">
     <ul class="flex justify-center space-x-8">
       <li><a href="index.html" class="hover:text-green-600 transition">Home</a></li>
@@ -95,13 +105,6 @@
       <li><a href="about.html" class="hover:text-green-600 transition">About Us</a></li>
     </ul>
   </nav>
-
-  <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full mt-16">
-    <h1 class="text-5xl font-bold text-center text-white drop-shadow-lg fadeIn">Tapasyaaa</h1>
-    <p class="text-center text-white mt-2 text-lg fadeIn" style="animation-delay: 0.5s;">
-      Your calm and caring mental health space
-    </p>
-  </header>
 
   <main class="main-content flex-grow max-w-3xl mx-auto px-6 py-12 space-y-10">
 
