@@ -8,11 +8,11 @@
 </head>
 <body class="flex flex-col min-h-screen bg-green-50">
 
-  <!-- Chat Container -->
+  <!-- Chat Wrapper -->
   <div class="flex-1 flex justify-center items-center p-4">
-    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden h-[85vh]">
       
-      <!-- Chat Header -->
+      <!-- Fixed Chat Header -->
       <div class="flex items-center space-x-3 bg-blue-300 px-4 py-3 shadow-md">
         <img src="bot.jpg" alt="Yati Avatar" class="w-10 h-10 rounded-full border border-white" />
         <div>
@@ -21,10 +21,12 @@
         </div>
       </div>
 
-      <!-- Chat messages -->
-      <div id="chat" class="flex-1 p-4 overflow-y-auto space-y-4 bg-green-50"></div>
+      <!-- Scrollable Messages -->
+      <div id="chat" class="flex-1 p-4 overflow-y-auto space-y-4 bg-green-50">
+        <!-- Messages will go here -->
+      </div>
 
-      <!-- Input Form -->
+      <!-- Fixed Input Box -->
       <form id="chat-form" class="p-3 flex border-t border-gray-200 bg-white">
         <input id="user-input" type="text" placeholder="Type your message..."
           class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" />
