@@ -54,21 +54,20 @@
     const answers = {};
     const questions = [
       { id: "name", text: "Hi, I’m Yati 😊 What’s your first name?" },
-      { id: "mood", text: "How are you feeling today?" },
-      { id: "duration", text: "Has this been going on for more than two weeks?" },
-      { id: "impact", text: "Is it affecting your daily life (sleep, work, focus)?" },
+      { id: "mood", text: "How are you feeling today? 💙" },
+      { id: "duration", text: "Has this feeling been going on for more than two weeks?" },
+      { id: "impact", text: "Is it affecting your daily life like sleep, work, or focus?" },
       { id: "help", text: "Would you like to book a therapy session?" }
     ];
 
-    const motivationalResponses = {
-      mood: [
-        { keywords: ["sad", "low", "bad", "not good"], text: "💙 I’m sorry you’re feeling this way. Storms don’t last forever — you are stronger than you think." },
-        { keywords: ["stressed", "anxious", "anxiety"], text: "💚 It’s okay to feel anxious. Take a deep breath — you are safe here and you matter." }
-      ],
-      impact: [
-        { keywords: ["yes"], text: "🌟 Caring for yourself is powerful — and seeking help is a brave step." }
-      ]
-    };
+    const motivationalLines = [
+      "💚 You’re stronger than you think — this moment doesn’t define you.",
+      "🌟 I’m proud of you for opening up, it’s a brave thing to do.",
+      "🌱 Remember, even the smallest step forward is still progress.",
+      "💙 You’re not alone in this, I’m here with you."
+    ];
+
+    const negativeKeywords = ["not good", "bad", "sad", "anxious", "depressed", "stress", "stressed", "lonely", "tired", "hopeless"];
 
     let qIndex = 0;
 
@@ -80,37 +79,31 @@
       }
     }
 
-    function checkMotivationalResponse(questionId, userAnswer) {
-      const responses = motivationalResponses[questionId];
-      if (!responses) return null;
-      const lowerAns = userAnswer.toLowerCase();
-      for (let resp of responses) {
-        if (resp.keywords.some(k => lowerAns.includes(k))) {
-          return resp.text;
-        }
-      }
-      return null;
-    }
-
     form.addEventListener('submit', e => {
       e.preventDefault();
       const text = input.value.trim();
       if (!text) return;
+
       bubble(text, 'user');
       answers[questions[qIndex].id] = text;
 
-      const motivation = checkMotivationalResponse(questions[qIndex].id, text);
-      qIndex++;
-      input.value = "";
-
-      setTimeout(() => {
-        if (motivation) {
-          bubble(motivation);
-          setTimeout(askNextQuestion, 1200);
-        } else {
+      // Check if answer contains negative keywords
+      const lowerText = text.toLowerCase();
+      if (negativeKeywords.some(word => lowerText.includes(word))) {
+        const randomMotivation = motivationalLines[Math.floor(Math.random() * motivationalLines.length)];
+        setTimeout(() => {
+          bubble(randomMotivation);
+        }, 500);
+        setTimeout(() => {
+          qIndex++;
           askNextQuestion();
-        }
-      }, 600);
+        }, 1500);
+      } else {
+        qIndex++;
+        setTimeout(askNextQuestion, 600);
+      }
+
+      input.value = "";
     });
 
     window.onload = () => {
