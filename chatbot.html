@@ -61,6 +61,31 @@
       "You are not alone in this — I’m here for you. 🤗"
     ];
 
+    const keywordResponses = {
+      "i am not feeling good": "I'm sorry to hear that. Remember, it's okay to have tough days. 💚",
+      "feeling lazy": "Sometimes we all need a break. What’s something small you enjoy doing? 🌿",
+      "i just cant deal with it": "That sounds really hard. You're stronger than you think. I'm here for you. 💙",
+      "its not working": "Let's try to take a step back and breathe. Sometimes things take time. 🌱",
+      "i cant take it anymore": "It's okay to feel overwhelmed. You're not alone in this. Reach out if you can. 🤗",
+      "its too much to handle": "Life can be overwhelming, but you're doing your best. Small steps matter. 💚",
+      "its too much to bear": "I'm here to listen. Sometimes sharing helps lighten the load. 🌿",
+      "feeling overwhelmed": "Take a deep breath. You're doing great even if it doesn't feel like it. 💙",
+      "feeling stuck": "Feeling stuck is tough. What’s one small thing you can change today? 🌱",
+      "feeling agitated": "It's okay to feel restless sometimes. Maybe a short walk or some fresh air might help? 🤗",
+      "feeling irritated": "I hear you. Let’s try to focus on something calming for a moment. 💚",
+      "the world is unfair": "It can feel that way. Remember, your feelings are valid and you matter. 🌿",
+      "people are unfair": "That’s painful to feel. You deserve kindness and understanding. 💙",
+      "no one understands me": "I’m here to listen and try to understand. You're not alone. 🌱",
+      "i am all alone": "You’re not alone, even if it feels that way. I’m right here with you. 🤗",
+      "i have never felt this lonely": "Loneliness can be so hard. It’s okay to reach out for help. 💚",
+      "it pains in my heart": "That pain matters. I'm here to listen whenever you want to share. 🌿",
+      "life is boring": "Sometimes life feels dull, but small joys can help brighten it. What do you enjoy? 💙",
+      "life is unfair": "That feeling is real. Take your time, and remember you are important. 🌱",
+      "life is uninteresting": "Let’s find one thing that sparks your interest, no matter how small. 🤗",
+      "i am not happy": "I'm sorry you're feeling this way. You deserve happiness and peace. 💚",
+      "i cant see any point of it": "That sounds really tough. It’s okay to ask for support when things feel bleak. 🌿"
+    };
+
     let questionIndex = 0;
 
     function appendMessage(text, sender, html = false) {
@@ -111,6 +136,16 @@
       }
     }
 
+    function checkKeywordResponse(text) {
+      const lowerText = text.toLowerCase();
+      for (const key in keywordResponses) {
+        if (lowerText.includes(key)) {
+          return keywordResponses[key];
+        }
+      }
+      return null;
+    }
+
     function containsNegativeEmotion(text) {
       const negatives = ["not good", "sad", "depressed", "anxious", "stressed", "tired", "low", "bad"];
       return negatives.some(word => text.toLowerCase().includes(word));
@@ -124,21 +159,10 @@
       appendMessage(userText, 'user');
       input.value = '';
 
-      if (containsNegativeEmotion(userText)) {
-        const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
-        setTimeout(() => appendMessage(boost, 'bot'), 500);
+      const keywordReply = checkKeywordResponse(userText);
+      if (keywordReply) {
+        setTimeout(() => appendMessage(keywordReply, 'bot'), 500);
         setTimeout(() => { questionIndex++; botAskQuestion(); }, 1500);
-      } else {
-        questionIndex++;
-        botAskQuestion();
-      }
-    });
-
-    window.onload = () => {
-      appendMessage("Hi there! 💚 I’m Yati, here to listen and support you. Let’s start with a few quick questions.", 'bot');
-      setTimeout(() => botAskQuestion(), 1500);
-    };
-  </script>
-
-</body>
-</html>
+      } else if (containsNegativeEmotion(userText)) {
+        const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
+        setTimeout(() => appendMessage(boost, 'bot'), 500
