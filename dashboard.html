@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard – Tapasyaaa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+    body { font-family: 'Comfortaa', cursive; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-white bg-opacity-70 backdrop-blur shadow-md sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <span class="text-2xl font-bold text-blue-900">Tapasyaaa</span>
+      <ul class="flex flex-wrap space-x-6 font-medium text-blue-900">
+        <li><a href="dashboard.html" class="text-green-600">Dashboard</a></li>
+        <li><a href="book-session.html" class="hover:text-green-600">Book Session</a></li>
+        <li><a href="history.html" class="hover:text-green-600">History</a></li>
+        <li><a href="resources.html" class="hover:text-green-600">Resources</a></li>
+        <li><a href="profile.html" class="hover:text-green-600">Profile</a></li>
+        <li><a href="index.html" class="hover:text-green-600">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="flex-grow max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- Greeting -->
+    <section class="text-center space-y-2">
+      <h1 class="text-4xl font-extrabold text-blue-900">Welcome Back, <span class="text-green-600">[Name]</span> 🌸</h1>
+      <p class="text-blue-700 text-lg">Your well-being tools, all in one place.</p>
+    </section>
+
+    <!-- Quick Action Cards -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Book Session -->
+      <a href="book-session.html"
+         class="bg-gradient-to-r from-green-100 to-green-50 hover:from-green-200 hover:to-green-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">📅</div>
+        <h2 class="text-xl font-semibold text-blue-900">Book a Session</h2>
+        <p class="text-sm text-gray-600 mt-2">Schedule your next therapy appointment.</p>
+      </a>
+
+      <!-- History -->
+      <a href="history.html"
+         class="bg-gradient-to-r from-blue-100 to-blue-50 hover:from-blue-200 hover:to-blue-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">📖</div>
+        <h2 class="text-xl font-semibold text-blue-900">Session History</h2>
+        <p class="text-sm text-gray-600 mt-2">Review past chats & calls.</p>
+      </a>
+
+      <!-- Resources -->
+      <a href="resources.html"
+         class="bg-gradient-to-r from-purple-100 to-purple-50 hover:from-purple-200 hover:to-purple-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">📚</div>
+        <h2 class="text-xl font-semibold text-blue-900">Resources Library</h2>
+        <p class="text-sm text-gray-600 mt-2">Guides, books & helpful videos.</p>
+      </a>
+
+      <!-- Daily Journal -->
+      <a href="#"
+         class="bg-gradient-to-r from-yellow-100 to-yellow-50 hover:from-yellow-200 hover:to-yellow-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">📝</div>
+        <h2 class="text-xl font-semibold text-blue-900">Daily Journal</h2>
+        <p class="text-sm text-gray-600 mt-2">Reflect & log today’s feelings privately.</p>
+      </a>
+
+      <!-- Crisis Support -->
+      <a href="crisis-management.html"
+         class="bg-gradient-to-r from-red-100 to-red-50 hover:from-red-200 hover:to-red-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">🚨</div>
+        <h2 class="text-xl font-semibold text-blue-900">Crisis Support</h2>
+        <p class="text-sm text-gray-600 mt-2">Get urgent contacts & helplines.</p>
+      </a>
+
+      <!-- Progress & Insights -->
+      <a href="#"
+         class="bg-gradient-to-r from-indigo-100 to-indigo-50 hover:from-indigo-200 hover:to-indigo-100 rounded-xl shadow-md p-6 text-center transform transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="text-4xl mb-3">📈</div>
+        <h2 class="text-xl font-semibold text-blue-900">Progress & Insights</h2>
+        <p class="text-sm text-gray-600 mt-2">Track sessions, trends & milestones.</p>
+      </a>
+    </section>
+
+<!-- Upcoming Session -->
+<section class="bg-white bg-opacity-80 rounded-xl shadow p-6 text-center">
+  <h3 class="text-lg font-semibold text-blue-800 mb-1">Upcoming Session</h3>
+
+  <!-- If there is a booked session -->
+  <p class="text-gray-700 text-sm mb-3">
+    Therapist: Dr. Priya Sharma<br>
+    Date: 14 September 2025<br>
+    Time: 4:00 PM (IST)
+  </p>
+  <a href="upcoming-session.html"
+     class="inline-block bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-lg shadow transition">
+     View Details / Join
+  </a>
+
+  <!-- If no booked session, comment the above and uncomment below -->
+  <!--
+  <p class="text-gray-600 text-sm">
+    No sessions scheduled.
+    <a href="book-session.html" class="text-green-600 underline">Book one now</a>.
+  </p>
+  -->
+</section>
+
+
+  <!-- Floating Chatbot -->
+  <a href="chatbot.html"
+     class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition transform hover:scale-105"
+     title="Chat with Assistant">
+    💬
+  </a>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-4 text-white mt-8">
+    &copy; 2025 Tapasyaaa. All rights reserved.
+  </footer>
+</body>
+</html>
