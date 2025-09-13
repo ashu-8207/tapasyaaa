@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Therapy Video Call – Tapasyaaa</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+  body { font-family: 'Comfortaa', cursive; }
+</style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col">
+
+<!-- Navbar -->
+<nav class="bg-white bg-opacity-70 backdrop-blur shadow-md sticky top-0 z-10">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <span class="text-2xl font-bold text-blue-900">Tapasyaaa</span>
+    <ul class="flex space-x-6 text-blue-900 font-medium">
+      <li><a href="dashboard.html" class="hover:text-green-600">Dashboard</a></li>
+      <li><a href="history.html" class="hover:text-green-600">History</a></li>
+      <li><a href="resources.html" class="hover:text-green-600">Resources</a></li>
+      <li><a href="profile.html" class="hover:text-green-600">Profile</a></li>
+      <li><a href="index.html" class="hover:text-green-600">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Call Layout -->
+<main class="flex-grow flex flex-col lg:flex-row max-w-6xl mx-auto w-full px-4 py-6 space-y-6 lg:space-y-0 lg:space-x-6">
+
+  <!-- Video Area -->
+  <div class="flex-1 bg-white bg-opacity-90 rounded-xl shadow p-4 flex flex-col">
+    <h2 class="text-lg font-semibold text-blue-900 text-center mb-2">Connected with <span class="text-green-600">Dr. Priya Sharma</span></h2>
+
+    <!-- Video Panels -->
+    <div class="relative flex-1 flex items-center justify-center rounded-xl bg-gray-200">
+      <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover rounded-xl"></video>
+      <video id="localVideo" autoplay playsinline muted class="absolute bottom-4 right-4 w-32 h-24 rounded shadow-md border border-white"></video>
+    </div>
+
+    <!-- Call Controls -->
+    <div class="flex justify-center mt-4 space-x-4">
+      <button id="toggleMic" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">Mute Mic</button>
+      <button id="toggleCam" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">Turn Off Camera</button>
+      <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg" onclick="window.location='dashboard.html'">End Call</button>
+    </div>
+    <p class="text-xs text-center text-gray-500 mt-1">Secure WebRTC session · Encrypted media</p>
+  </div>
+
+  <!-- Chat Side Panel -->
+  <aside class="w-full lg:w-80 bg-white bg-opacity-90 rounded-xl shadow flex flex-col">
+    <div class="p-3 border-b text-blue-900 font-semibold flex justify-between">
+      <span>Session Chat</span>
+      <span class="text-xs text-gray-500">Contact info blocked</span>
+    </div>
+    <div id="chatBox" class="flex-1 p-3 space-y-2 overflow-y-auto text-sm text-gray-700">
+      <!-- Chat messages append here -->
+    </div>
+    <form id="chatForm" class="flex p-3 border-t space-x-2">
+      <input id="chatInput" type="text" placeholder="Type a message..."
+        class="flex-1 border rounded px-2 py-1 text-sm" autocomplete="off" />
+      <button class="bg-green-400 hover:bg-green-500 text-white px-3 py-1 rounded">Send</button>
+    </form>
+  </aside>
+
+</main>
+
+<!-- Floating Chatbot (Help) -->
+<a href="chatbot.html" class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-xl transition transform hover:scale-105" title="Help / Notes">
+  💬
+</a>
+
+<footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-4 text-white">
+  &copy; 2025 Tapasyaaa. All rights reserved.
+</footer>
+
+<script>
+// Placeholder toggles (real mic/camera logic handled in your WebRTC code)
+document.getElementById('toggleMic').addEventListener('click', e=>{
+  e.target.textContent = e.target.textContent === 'Mute Mic' ? 'Unmute Mic' : 'Mute Mic';
+});
+document.getElementById('toggleCam').addEventListener('click', e=>{
+  e.target.textContent = e.target.textContent === 'Turn Off Camera' ? 'Turn On Camera' : 'Turn Off Camera';
+});
+
+// Simple chat filter (very naive)
+const chatForm = document.getElementById('chatForm');
+const chatInput = document.getElementById('chatInput');
+const chatBox = document.getElementById('chatBox');
+const forbidden = /@|\b\d{10}\b|\+91|\d{3}-\d{3}-\d{4}/;
+
+chatForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  if(!msg) return;
+  if(forbidden.test(msg)){
+    alert('Sharing contact info is not allowed.');
+    return;
+  }
+  const p = document.createElement('p');
+  p.textContent = 'You: ' + msg;
+  chatBox.appendChild(p);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  chatInput.value = '';
+});
+</script>
+</body>
+</html>
