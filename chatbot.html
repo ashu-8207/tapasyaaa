@@ -62,28 +62,24 @@
     ];
 
     const keywordResponses = {
-      "i am not feeling good": "I'm sorry to hear that. Remember, it's okay to have tough days. 💚",
-      "feeling lazy": "Sometimes we all need a break. What’s something small you enjoy doing? 🌿",
-      "i just cant deal with it": "That sounds really hard. You're stronger than you think. I'm here for you. 💙",
-      "its not working": "Let's try to take a step back and breathe. Sometimes things take time. 🌱",
-      "i cant take it anymore": "It's okay to feel overwhelmed. You're not alone in this. Reach out if you can. 🤗",
-      "its too much to handle": "Life can be overwhelming, but you're doing your best. Small steps matter. 💚",
-      "its too much to bear": "I'm here to listen. Sometimes sharing helps lighten the load. 🌿",
-      "feeling overwhelmed": "Take a deep breath. You're doing great even if it doesn't feel like it. 💙",
-      "feeling stuck": "Feeling stuck is tough. What’s one small thing you can change today? 🌱",
-      "feeling agitated": "It's okay to feel restless sometimes. Maybe a short walk or some fresh air might help? 🤗",
-      "feeling irritated": "I hear you. Let’s try to focus on something calming for a moment. 💚",
-      "the world is unfair": "It can feel that way. Remember, your feelings are valid and you matter. 🌿",
-      "people are unfair": "That’s painful to feel. You deserve kindness and understanding. 💙",
-      "no one understands me": "I’m here to listen and try to understand. You're not alone. 🌱",
-      "i am all alone": "You’re not alone, even if it feels that way. I’m right here with you. 🤗",
-      "i have never felt this lonely": "Loneliness can be so hard. It’s okay to reach out for help. 💚",
-      "it pains in my heart": "That pain matters. I'm here to listen whenever you want to share. 🌿",
-      "life is boring": "Sometimes life feels dull, but small joys can help brighten it. What do you enjoy? 💙",
-      "life is unfair": "That feeling is real. Take your time, and remember you are important. 🌱",
-      "life is uninteresting": "Let’s find one thing that sparks your interest, no matter how small. 🤗",
-      "i am not happy": "I'm sorry you're feeling this way. You deserve happiness and peace. 💚",
-      "i cant see any point of it": "That sounds really tough. It’s okay to ask for support when things feel bleak. 🌿"
+      "I am not feeling good": "I’m really sorry you’re feeling like this right now. Remember, it’s okay to have bad days. 💚",
+      "feeling lazy": "We all have days when we feel low on energy. Maybe you can start small with something that feels manageable. 🌱",
+      "I just cant deal with it": "I know it seems overwhelming right now, but you don’t have to deal with everything all at once. Let’s take it one step at a time. 💙",
+      "Its not working": "I hear you, and it’s tough when things don’t go as planned. Let’s talk about it and see what can be done. 🌿",
+      "I cant take it anymore": "I’m really sorry you’re feeling this way. Please know you don’t have to go through this alone. 💚",
+      "Its too much to handle/bear": "It’s completely okay to feel like things are too much sometimes. You deserve to feel heard and supported. 💙",
+      "Feeling overwhelmed": "When everything feels like a lot, it’s important to pause and breathe. I’m here to listen whenever you need. 🌱",
+      "Feeling stuck": "It can feel really frustrating when you're stuck. Sometimes, talking through it can help you find a way forward. 💚",
+      "Feeling agitated": "I understand that agitation can be hard to manage. Taking deep breaths and finding some space might help calm things down. 🌿",
+      "feeling irritated": "I’m sorry you’re feeling irritated. It’s okay to feel that way, and you can always express it here. 💙",
+      "The world/people are unfair/unjust": "I know it can feel like things are unjust at times. Your feelings are valid, and it’s okay to feel frustrated about that. 💚",
+      "No one understands me": "I’m really sorry you feel misunderstood. You matter, and I’m here to listen and support you through this. 💙",
+      "I am all alone": "I’m really sorry you feel alone. You are never truly alone in this, even when it feels like it. 💚",
+      "I have never felt this lonely": "Loneliness can feel really overwhelming. I’m here to chat whenever you need to share how you’re feeling. 💙",
+      "It pains in my heart": "I’m so sorry you’re feeling that way. Emotional pain can feel heavy, but please know that it’s okay to let it out. 💚",
+      "Life is boring/unfair/uninteresting": "I know life can feel dull and unfair at times. Sometimes, talking it through can help bring a new perspective. 💙",
+      "I am not happy": "I’m really sorry you’re feeling this way. Your happiness matters, and you don’t have to go through this alone. 💚",
+      "I cant see any point of it": "I hear you. It can feel like there’s no point sometimes. But I promise, your feelings and your journey matter deeply. 💙"
     };
 
     let questionIndex = 0;
@@ -136,19 +132,9 @@
       }
     }
 
-    function checkKeywordResponse(text) {
-      const lowerText = text.toLowerCase();
-      for (const key in keywordResponses) {
-        if (lowerText.includes(key)) {
-          return keywordResponses[key];
-        }
-      }
-      return null;
-    }
-
     function containsNegativeEmotion(text) {
-      const negatives = ["not good", "sad", "depressed", "anxious", "stressed", "tired", "low", "bad"];
-      return negatives.some(word => text.toLowerCase().includes(word));
+      const negatives = Object.keys(keywordResponses);
+      return negatives.some(word => text.toLowerCase().includes(word.toLowerCase()));
     }
 
     form.addEventListener('submit', e => {
@@ -159,10 +145,16 @@
       appendMessage(userText, 'user');
       input.value = '';
 
-      const keywordReply = checkKeywordResponse(userText);
-      if (keywordReply) {
-        setTimeout(() => appendMessage(keywordReply, 'bot'), 500);
-        setTimeout(() => { questionIndex++; botAskQuestion(); }, 1500);
-      } else if (containsNegativeEmotion(userText)) {
-        const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
-        setTimeout(() => appendMessage(boost, 'bot'), 500
+      let responseFound = false;
+      for (let keyword in keywordResponses) {
+        if (userText.toLowerCase().includes(keyword.toLowerCase())) {
+          appendMessage(keywordResponses[keyword], 'bot');
+          responseFound = true;
+          break;
+        }
+      }
+
+      if (!responseFound) {
+        if (containsNegativeEmotion(userText)) {
+          const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
+          setTimeout(() => appendMessage(boost
