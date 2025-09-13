@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Session History – Tapasyaaa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');body{font-family:'Comfortaa',cursive}</style>
+</head>
+<body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-100 shadow-md p-4 text-blue-900 font-semibold">
+    <ul class="flex flex-wrap justify-center space-x-6">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="book-session.html">Book Session</a></li>
+      <li><a href="history.html" class="text-green-600">History</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="index.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main -->
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold text-blue-900 mb-6 text-center">📖 Session History</h1>
+
+    <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+      <thead class="bg-blue-200 text-blue-900">
+        <tr>
+          <th class="py-3 px-4 text-left">Date</th>
+          <th class="py-3 px-4 text-left">Type</th>
+          <th class="py-3 px-4 text-left">Status</th>
+          <th class="py-3 px-4 text-left">Notes</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr>
+          <td class="py-3 px-4">2025-09-01</td>
+          <td class="py-3 px-4">Therapist Call</td>
+          <td class="py-3 px-4 text-green-600">Completed</td>
+          <td class="py-3 px-4">Feeling calmer.</td>
+        </tr>
+        <tr>
+          <td class="py-3 px-4">2025-08-25</td>
+          <td class="py-3 px-4">Chatbot</td>
+          <td class="py-3 px-4 text-green-600">Completed</td>
+          <td class="py-3 px-4">Stress discussion.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Floating Chatbot -->
+  <a href="chatbot.html" class="fixed bottom-6 right-6 bg-blue-400 hover:bg-blue-500 text-white p-4 rounded-full shadow-lg" title="Chatbot">💬</a>
+
+  <footer class="bg-gradient-to-r from-blue-300 to-green-300 text-center p-4 text-white mt-8">
+    &copy; 2025 Tapasyaaa. All rights reserved.
+  </footer>
+</body>
+</html>
