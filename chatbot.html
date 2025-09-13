@@ -157,4 +157,20 @@
       if (!responseFound) {
         if (containsNegativeEmotion(userText)) {
           const boost = motivationalBoosts[Math.floor(Math.random() * motivationalBoosts.length)];
-          setTimeout(() => appendMessage(boost
+          setTimeout(() => appendMessage(boost, 'bot'), 500);
+          setTimeout(() => { questionIndex++; botAskQuestion(); }, 1500);
+        } else {
+          questionIndex++;
+          botAskQuestion();
+        }
+      }
+    });
+
+    window.onload = () => {
+      appendMessage("Hi there! 💚 I’m Yati, here to listen and support you. Let’s start with a few quick questions.", 'bot');
+      setTimeout(() => botAskQuestion(), 1500);
+    };
+  </script>
+
+</body>
+</html>
