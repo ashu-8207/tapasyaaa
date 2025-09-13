@@ -3,100 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register - Tapasyaaa</title>
+  <title>Tapasyaaa - Register</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-    body {
-      font-family: 'Comfortaa', cursive;
+    body { 
+      font-family: 'Comfortaa', cursive; 
+      background: linear-gradient(135deg, hsl(210, 25%, 98%), hsl(150, 40%, 75%)); 
+      color: hsl(210, 25%, 25%); 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
     }
-    .fadeIn {
-      animation: fadeIn 0.6s ease forwards;
-      opacity: 0;
+
+    .shape { 
+      position: absolute; 
+      border-radius: 50%; 
+      background-color: rgba(255, 255, 255, 0.15); 
+      animation: float 10s infinite ease-in-out; 
+      z-index: 0; 
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    .shape-1 { width: 200px; height: 200px; top: 10%; left: 20%; animation-delay: -3s; }
+    .shape-2 { width: 150px; height: 150px; top: 40%; left: 60%; animation-delay: -2s; }
+    .shape-3 { width: 100px; height: 100px; top: 70%; left: 10%; animation-delay: -5s; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(15deg); } }
+
+    .form-container { background: rgba(255,255,255,0.9); padding: 40px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); z-index: 10; width: 100%; max-width: 400px; margin-top: 80px; }
+
+    .form-input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #ccc; font-size: 16px; }
+
+    .form-button { background-color: #64B5F6; color: white; font-weight: bold; padding: 12px; border-radius: 12px; width: 100%; text-align: center; margin-top: 10px; transition: background 0.3s; }
+    .form-button:hover { background-color: #42A5F5; }
+
+    .social-button { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #eee; padding: 10px; border-radius: 10px; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+    .social-button:hover { background-color: #ddd; }
+
+    a { color: #42A5F5; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
-<body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col items-center justify-center text-gray-800">
+<body>
+
+  <!-- Floating Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
 
   <!-- Header -->
-  <header id="header" class="text-center mb-12 fadeIn" style="animation-delay: 0.2s;">
-    <h1 class="text-5xl font-bold text-blue-800">Register</h1>
-    <p class="text-lg text-blue-600 mt-2">Choose your registration type</p>
+  <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full relative z-10 text-center">
+    <h1 class="text-4xl font-bold text-white drop-shadow-lg">Tapasyaaa</h1>
+    <p class="text-white mt-2">Your calm and caring mental health space</p>
   </header>
 
-  <!-- Registration Options -->
-  <div id="options" class="flex flex-col space-y-6 w-full max-w-md px-6 fadeIn" style="animation-delay: 0.4s;">
-    <button onclick="showForm('patient')" class="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
-      <span class="text-2xl font-semibold text-green-700">🩺 Register as a Patient</span>
-    </button>
-    <button onclick="showForm('doctor')" class="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-xl transition transform hover:scale-105">
-      <span class="text-2xl font-semibold text-blue-700">👨‍⚕️ Register as a Doctor</span>
-    </button>
-  </div>
-
   <!-- Registration Form -->
-  <div id="form-container" class="hidden fadeIn w-full max-w-md px-6">
-    <button onclick="goBack()" class="mb-4 text-blue-600 hover:underline">&larr; Back</button>
-    <h2 id="form-title" class="text-3xl font-bold text-center mb-6"></h2>
-    <form class="bg-white rounded-3xl shadow-lg p-8 space-y-4">
-      <div>
-        <label class="block mb-1 text-gray-600">Full Name</label>
-        <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
-      </div>
-      <div>
-        <label class="block mb-1 text-gray-600">Email</label>
-        <input type="email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
-      </div>
-      <div>
-        <label class="block mb-1 text-gray-600">Password</label>
-        <input type="password" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
-      </div>
-      <div id="extra-field"></div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">Register</button>
+  <div class="form-container">
+    <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">Create a New Account</h2>
+    <form id="registerForm">
+      <input type="text" placeholder="Full Name" class="form-input" required>
+      <input type="email" placeholder="Email" class="form-input" required>
+      <input type="password" placeholder="Password" class="form-input" required>
+      <input type="password" placeholder="Confirm Password" class="form-input" required>
+      <button type="submit" class="form-button">Register</button>
     </form>
-  </div>
 
-  <!-- Footer -->
-  <footer class="mt-16 text-center text-blue-600 fadeIn" style="animation-delay: 0.6s;">
-    <p>&copy; 2025 Tapasyaaa. All rights reserved.</p>
-  </footer>
+    <div class="text-center mt-4 font-semibold text-gray-600">Or register with</div>
+    <div class="flex flex-col gap-3 mt-3">
+      <div class="social-button" onclick="window.location.href='dashboard.html'">
+        <img src="google-logo.png" alt="Google" class="w-5 h-5"> Register with Google
+      </div>
+      <div class="social-button" onclick="window.location.href='dashboard.html'">
+        <img src="facebook-logo.png" alt="Facebook" class="w-5 h-5"> Register with Facebook
+      </div>
+    </div>
+
+    <p class="text-center mt-6 text-gray-700">Already have an account? <a href="login.html">Login here</a></p>
+  </div>
 
   <script>
-    function showForm(type) {
-      document.getElementById('options').classList.add('hidden');
-      document.getElementById('header').classList.add('hidden');
-      document.getElementById('form-container').classList.remove('hidden');
-
-      const title = document.getElementById('form-title');
-      const extraField = document.getElementById('extra-field');
-
-      if (type === 'patient') {
-        title.textContent = "Register as a Patient";
-        extraField.innerHTML = `
-          <div>
-            <label class="block mb-1 text-gray-600">Health ID</label>
-            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
-          </div>
-        `;
-      } else {
-        title.textContent = "Register as a Doctor";
-        extraField.innerHTML = `
-          <div>
-            <label class="block mb-1 text-gray-600">Medical License Number</label>
-            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" required>
-          </div>
-        `;
-      }
-    }
-
-    function goBack() {
-      document.getElementById('form-container').classList.add('hidden');
-      document.getElementById('options').classList.remove('hidden');
-      document.getElementById('header').classList.remove('hidden');
-    }
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'dashboard.html';
+    });
   </script>
 
 </body>
