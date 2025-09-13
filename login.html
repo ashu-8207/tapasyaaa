@@ -3,59 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login - Tapasyaaa</title>
+  <title>Tapasyaaa - Login</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <style> 
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
     body { 
-      font-family: 'Comfortaa', cursive;
+      font-family: 'Comfortaa', cursive; 
+      background: linear-gradient(135deg, hsl(210, 25%, 98%), hsl(150, 40%, 75%)); 
+      color: hsl(210, 25%, 25%); 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
     }
-    .fadeIn {
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
+
+    .shape { 
+      position: absolute; 
+      border-radius: 50%; 
+      background-color: rgba(255, 255, 255, 0.15); 
+      animation: float 10s infinite ease-in-out; 
+      z-index: 0; 
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    .shape-1 { width: 200px; height: 200px; top: 10%; left: 20%; animation-delay: -3s; }
+    .shape-2 { width: 150px; height: 150px; top: 40%; left: 60%; animation-delay: -2s; }
+    .shape-3 { width: 100px; height: 100px; top: 70%; left: 10%; animation-delay: -5s; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(15deg); } }
+
+    .form-container { background: rgba(255,255,255,0.9); padding: 40px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); z-index: 10; width: 100%; max-width: 400px; margin-top: 80px; }
+
+    .form-input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #ccc; font-size: 16px; }
+
+    .form-button { background-color: #64B5F6; color: white; font-weight: bold; padding: 12px; border-radius: 12px; width: 100%; text-align: center; margin-top: 10px; transition: background 0.3s; }
+    .form-button:hover { background-color: #42A5F5; }
+
+    .social-button { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #eee; padding: 10px; border-radius: 10px; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+    .social-button:hover { background-color: #ddd; }
+
+    a { color: #42A5F5; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
-<body class="bg-gradient-to-b from-blue-50 via-green-50 to-blue-50 min-h-screen flex flex-col justify-center items-center px-4">
+<body>
 
-  <header class="text-center mb-8 fadeIn" style="animation-delay: 0.2s;">
-    <h1 class="text-4xl font-bold text-blue-900">Tapasyaaa</h1>
-    <p class="text-blue-700 mt-2">Your calm and caring mental health space</p>
+  <!-- Floating Shapes -->
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-300 to-green-300 p-6 shadow-md rounded-b-3xl w-full relative z-10 text-center">
+    <h1 class="text-4xl font-bold text-white drop-shadow-lg">Tapasyaaa</h1>
+    <p class="text-white mt-2">Your calm and caring mental health space</p>
   </header>
 
-  <div class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-8 w-full max-w-md fadeIn" style="animation-delay: 0.4s;">
-    <h2 class="text-2xl font-semibold text-center text-green-700 mb-6">Login</h2>
-    <form action="#" method="POST" class="space-y-5">
-      <div>
-        <label for="email" class="block text-blue-900 font-medium mb-1">Email</label>
-        <input type="email" id="email" name="email" required
-               class="w-full px-4 py-2 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-green-300">
-      </div>
-      <div>
-        <label for="password" class="block text-blue-900 font-medium mb-1">Password</label>
-        <input type="password" id="password" name="password" required
-               class="w-full px-4 py-2 rounded-lg border border-blue-200 focus:outline-none focus:ring-2 focus:ring-green-300">
-      </div>
-      <div class="flex justify-between items-center text-sm">
-        <label class="flex items-center space-x-2">
-          <input type="checkbox" class="rounded text-green-500">
-          <span class="text-blue-800">Remember me</span>
-        </label>
-        <a href="#" class="text-green-600 hover:underline">Forgot password?</a>
-      </div>
-      <button type="submit" 
-              class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition">
-        Login
-      </button>
+  <!-- Login Form -->
+  <div class="form-container">
+    <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">Login to Your Account</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="Email" class="form-input" required>
+      <input type="password" placeholder="Password" class="form-input" required>
+      <a href="#">Forgot Password?</a>
+      <button type="submit" class="form-button">Login</button>
     </form>
-    <p class="text-center text-sm text-blue-800 mt-6">
-      Don't have an account? 
-      <a href="register.html" class="text-green-600 hover:underline">Register here</a>
-    </p>
+
+    <div class="text-center mt-4 font-semibold text-gray-600">Or login with</div>
+    <div class="flex flex-col gap-3 mt-3">
+      <div class="social-button" onclick="window.location.href='dashboard.html'">
+        <img src="google-logo.png" alt="Google" class="w-5 h-5"> Login with Google
+      </div>
+      <div class="social-button" onclick="window.location.href='dashboard.html'">
+        <img src="facebook-logo.png" alt="Facebook" class="w-5 h-5"> Login with Facebook
+      </div>
+    </div>
+
+    <p class="text-center mt-6 text-gray-700">Don't have an account? <a href="register.html">Register here</a></p>
   </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'dashboard.html';
+    });
+  </script>
 
 </body>
 </html>
