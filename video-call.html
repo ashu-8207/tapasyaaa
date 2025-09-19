@@ -76,13 +76,56 @@
 </footer>
 
 <script>
-// Placeholder toggles (real mic/camera logic handled in your WebRTC code)
-document.getElementById('toggleMic').addEventListener('click', e=>{
-  e.target.textContent = e.target.textContent === 'Mute Mic' ? 'Unmute Mic' : 'Mute Mic';
+// Accessing the user's camera and microphone
+let localStream;
+let remoteStream; // This should be populated by remote peer's media stream
+let localVideo = document.getElementById('localVideo');
+let remoteVideo = document.getElementById('remoteVideo');
+
+async function startMedia() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    localStream = stream;
+
+    // Attach the local stream to the local video element
+    localVideo.srcObject = stream;
+
+    // Here, you would normally signal this stream to the remote peer via WebRTC signaling
+
+    // In a production WebRTC application, you'd also set up the remote stream here
+    // remoteVideo.srcObject = remoteStream; // Uncomment when remote stream is available
+
+  } catch (err) {
+    console.error('Error accessing media devices.', err);
+  }
+}
+
+// Mute and unmute mic
+document.getElementById('toggleMic').addEventListener('click', e => {
+  const audioTrack = localStream.getAudioTracks()[0];
+  if (audioTrack.enabled) {
+    audioTrack.enabled = false;
+    e.target.textContent = 'Unmute Mic';
+  } else {
+    audioTrack.enabled = true;
+    e.target.textContent = 'Mute Mic';
+  }
 });
-document.getElementById('toggleCam').addEventListener('click', e=>{
-  e.target.textContent = e.target.textContent === 'Turn Off Camera' ? 'Turn On Camera' : 'Turn Off Camera';
+
+// Turn camera on/off
+document.getElementById('toggleCam').addEventListener('click', e => {
+  const videoTrack = localStream.getVideoTracks()[0];
+  if (videoTrack.enabled) {
+    videoTrack.enabled = false;
+    e.target.textContent = 'Turn On Camera';
+  } else {
+    videoTrack.enabled = true;
+    e.target.textContent = 'Turn Off Camera';
+  }
 });
+
+// Start the media (on page load)
+window.onload = startMedia;
 
 // Simple chat filter (very naive)
 const chatForm = document.getElementById('chatForm');
