@@ -1,107 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>About Us</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e6f4ea, #efe6ff);
-            color: #3a2f4f;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Tapasyaaa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    /* Background animation */
+    @keyframes gradient-shift {
+      0% {
+        background-position: 0% 50%;
+      }
 
-        h1 {
-            margin-bottom: 10px;
-            color: #6a4c93;
-        }
+      50% {
+        background-position: 100% 50%;
+      }
 
-        p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #5a4a6a;
-        }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-        .team {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
+    .animated-gradient {
+      background: linear-gradient(-45deg, #bfdbfe, #93c5fd, #bfdbfe, #dbeafe);
+      background-size: 400% 400%;
+      animation: gradient-shift 8s ease infinite;
+    }
 
-        .card {
-            background: #f6f0ff;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        }
+    /* Variations of smooth animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
 
-        .image-box {
-            width: 100%;
-            height: 180px;
-            background: #d9f2e6;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7a6c8f;
-            font-size: 14px;
-        }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
-        .name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 6px;
-            color: #5b3f8c;
-        }
+    @keyframes fadeInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.98);
+      }
 
-        .role {
-            font-size: 14px;
-            color: #6f5f85;
-        }
-    </style>
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .animate-section {
+      opacity: 0;
+    }
+
+    .visible-up {
+      animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .visible-left {
+      animation: fadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .visible-right {
+      animation: fadeInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Existing hover & float effects */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-5px)
+      }
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.2)
+      }
+
+      50% {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4)
+      }
+    }
+
+    .glow {
+      animation: glow 2.5s ease-in-out infinite;
+    }
+  </style>
 </head>
-<body>
 
-<div class="container">
-    <h1>About Us</h1>
-    <p>
-        We are a passionate team working together to create meaningful and impactful digital experiences.
-    </p>
+<body class="bg-blue-50 font-sans text-gray-800 min-h-screen">
 
-    <div class="team">
-        <div class="card">
-            <div class="image-box">Image Here</div>
-            <div class="name">Salwa Choudhari</div>
-            <div class="role">Role goes here</div>
+  <header class="animated-gradient p-6 shadow-md text-center relative overflow-hidden animate-section">
+    <h1 class="text-4xl font-bold text-blue-900 relative z-10">About Us</h1>
+    <p class="text-blue-700 mt-1 relative z-10">The Heart and Purpose of Tapasyaaa</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-16">
+    <section class="text-center animate-section">
+      <p class="text-lg max-w-3xl mx-auto leading-relaxed">
+        At Tapasyaaa, we know that mental health challenges are not just medical conditions — they are deeply personal
+        journeys that touch every part of life. Our work is rooted in empathy, understanding, and the belief that every
+        individual has the strength to heal when supported with compassion.
+      </p>
+    </section>
+
+    <section class="animate-section">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4 text-center">Our Work & Professional Approach</h2>
+      <p class="text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-6">
+        We offer a safe, confidential environment for emotional healing and personal growth. Through one-on-one
+        counseling, group support sessions, mindfulness training, and positive habit-building programs, we empower
+        people to cope with anxiety, depression, self-doubt, and stress. Our approach blends evidence-based therapy
+        methods with human warmth, ensuring every person feels heard and valued.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-6 mt-6">
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl">
+          <h3 class="text-lg font-semibold text-green-700">Therapy & Counseling</h3>
+          <p class="text-gray-600 mt-2">Professional guidance to process emotions and build resilience.</p>
         </div>
-
-        <div class="card">
-            <div class="image-box">Image Here</div>
-            <div class="name">Arsh Jahagirdar</div>
-            <div class="role">Role goes here</div>
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl">
+          <h3 class="text-lg font-semibold text-blue-700">Community Support</h3>
+          <p class="text-gray-600 mt-2">Group sessions that remind you — you’re not alone.</p>
         </div>
-
-        <div class="card">
-            <div class="image-box">Image Here</div>
-            <div class="name">Mayur Koli</div>
-            <div class="role">Role goes here</div>
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl">
+          <h3 class="text-lg font-semibold text-purple-700">Mindfulness Practice</h3>
+          <p class="text-gray-600 mt-2">Techniques to reduce stress and improve focus.</p>
         </div>
-
-        <div class="card">
-            <div class="image-box">Image Here</div>
-            <div class="name">Nivedita Mirge</div>
-            <div class="role">Role goes here</div>
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl">
+          <h3 class="text-lg font-semibold text-indigo-700">Personal Growth Plans</h3>
+          <p class="text-gray-600 mt-2">Customized strategies for goal setting and progress tracking.</p>
         </div>
-    </div>
-</div>
+      </div>
+    </section>
 
+    <section class="text-center animate-section">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">The Story Behind Tapasyaaa</h2>
+      <p class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+        Tapasyaaa was born from a deep personal experience.
+        Among the three of us, one struggled silently with overwhelming anxiety and recurring mental breakdowns.
+        The thought of visiting a counselor’s office brought fear — fear of judgment, whispers from society,
+        and the crushing weight of being labeled as “mad.”
+
+        <br><br>
+        In the quiet of late nights, the search for online counseling began — a safe place to open up without
+        shame or stares. But finding the right psychologist, someone truly approachable and trustworthy,
+        was far harder than expected.
+        That struggle planted the seed for Tapasyaaa — a platform where mental health support is accessible,
+        stigma-free, and full of warmth.
+
+        <br><br>
+        Our mission is simple: to ensure no one feels alone in their fight.
+        If you’re reading this, know that healing is not a weakness — it’s courage in its purest form.
+      </p>
+    </section>
+
+    <section class="text-center animate-section">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Our Emotional Commitment</h2>
+      <p class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+        More than just a service, Tapasyaaa is a safe haven. We believe in building trust first,
+        offering guidance second. Every conversation we have is built on integrity, empathy,
+        and the shared goal of helping you reconnect with your inner strength.
+        We walk alongside you — celebrating victories and supporting you through setbacks —
+        because healing is better when it’s done together.
+      </p>
+    </section>
+
+    <section class="animate-section">
+      <h2 class="text-2xl font-bold text-blue-900 text-center mb-8">The Team Behind Tapasyaaa</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl glow">
+          <img src="arsh.jpg" alt="Arsh Jahagirdar"
+            class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm" />
+          <h3 class="text-xl font-semibold text-blue-900">Arsh Jahagirdar</h3>
+          <p class="text-blue-700 text-sm mt-1">Vision & Tech Lead</p>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl glow">
+          <img src="nakul.jpg" alt="Nakul Gehlot"
+            class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm" />
+          <h3 class="text-xl font-semibold text-blue-900">Nakul Gehlot</h3>
+          <p class="text-blue-700 text-sm mt-1">Operations & Support</p>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 hover:shadow-2xl glow">
+          <img src="shiv.jpg" alt="Shiv Koli"
+            class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-blue-300 shadow-sm" />
+          <h3 class="text-xl font-semibold text-blue-900">Shiv Koli</h3>
+          <p class="text-blue-700 text-sm mt-1">Community & Outreach</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center animate-section">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">What People Say</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="italic text-gray-600">"Tapasyaaa helped me rediscover myself."</p>
+          <p class="mt-3 text-sm text-gray-500">— <strong>Anonymous</strong></p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="italic text-gray-600">"The counselors are so warm and patient."</p>
+          <p class="mt-3 text-sm text-gray-500">— <strong>Anonymous</strong></p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="italic text-gray-600">"Booking a session was the best decision."</p>
+          <p class="mt-3 text-sm text-gray-500">— <strong>Anonymous</strong></p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="text-center animate-section mt-12">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">Ready to Begin?</h2>
+      <a href="book-session.html"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
+        Book a Session
+      </a>
+    </section>
+  </main>
+
+  <footer class="animated-gradient text-center p-6 text-blue-900 mt-10 relative overflow-hidden animate-section">
+    <p class="relative z-10">&copy; 2025 Tapasyaaa. Built with care.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll(".animate-section");
+      const directions = ["up", "left", "right"];
+      let index = 0;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`visible-${directions[index % directions.length]}`);
+            index++;
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
+
 </html>
